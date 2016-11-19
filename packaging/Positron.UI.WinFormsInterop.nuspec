@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+    <metadata>
+        <id>Positron.UI.WinFormsInterop</id>
+        <version>0.1.0</version>
+        <authors>bburnett</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>
+			Extensions to support opening Positron windows from legacy WinForms windows.
+		</description>
+        <copyright>Copyright (c) 2016 Pathfinder Software, LLC.  All Rights Reserved.</copyright>
+        <dependencies>
+			<dependency id="Positron.UI" version="0.1.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\src\Positron.UI.WinFormsInterop\bin\Release\Positron.UI.WinFormsInterop.dll" target="lib\net452\Positron.UI.WinFormsInterop.dll" />
+		<file src="..\src\Positron.UI.WinFormsInterop\bin\Release\Positron.UI.WinFormsInterop.xml" target="lib\net452\Positron.UI.WinFormsInterop.xml" />
+    </files>
+</package>

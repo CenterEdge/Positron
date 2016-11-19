@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8604B172-0C4E-48B1-A384-092DB77C71E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Positron.UI", "src\Positron.UI\Positron.UI.csproj", "{7FDEDA30-3C2C-4B76-B052-ACA9E15083C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Positron.Server.UnitTests", "test\Positron.Server.UnitTests\Positron.Server.UnitTests.csproj", "{91E4EC49-D0A8-4055-8B03-BCE3CCF30440}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{FE27A597-3337-4B59-BFCC-308BDB684AC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Positron.Server", "src\Positron.Server\Positron.Server.csproj", "{88881C2C-3688-4737-980E-8D012646389B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Positron.Application", "test\Positron.Application\Positron.Application.csproj", "{14092914-FD81-4937-B6D1-723231809344}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Positron.WinFormsApplication", "test\Positron.WinFormsApplication\Positron.WinFormsApplication.csproj", "{0A0CD9E1-580F-4F59-A521-93871D6A7087}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Positron.UI.WinFormsInterop", "src\Positron.UI.WinFormsInterop\Positron.UI.WinFormsInterop.csproj", "{412EFBF7-75FB-40B3-9A58-AE89EE83EC22}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FDEDA30-3C2C-4B76-B052-ACA9E15083C6}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7FDEDA30-3C2C-4B76-B052-ACA9E15083C6}.Debug|Any CPU.Build.0 = Debug|x86
+		{7FDEDA30-3C2C-4B76-B052-ACA9E15083C6}.Release|Any CPU.ActiveCfg = Release|x86
+		{7FDEDA30-3C2C-4B76-B052-ACA9E15083C6}.Release|Any CPU.Build.0 = Release|x86
+		{91E4EC49-D0A8-4055-8B03-BCE3CCF30440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91E4EC49-D0A8-4055-8B03-BCE3CCF30440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91E4EC49-D0A8-4055-8B03-BCE3CCF30440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91E4EC49-D0A8-4055-8B03-BCE3CCF30440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88881C2C-3688-4737-980E-8D012646389B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88881C2C-3688-4737-980E-8D012646389B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88881C2C-3688-4737-980E-8D012646389B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88881C2C-3688-4737-980E-8D012646389B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14092914-FD81-4937-B6D1-723231809344}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{14092914-FD81-4937-B6D1-723231809344}.Debug|Any CPU.Build.0 = Debug|x86
+		{14092914-FD81-4937-B6D1-723231809344}.Release|Any CPU.ActiveCfg = Release|x86
+		{14092914-FD81-4937-B6D1-723231809344}.Release|Any CPU.Build.0 = Release|x86
+		{0A0CD9E1-580F-4F59-A521-93871D6A7087}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0A0CD9E1-580F-4F59-A521-93871D6A7087}.Debug|Any CPU.Build.0 = Debug|x86
+		{0A0CD9E1-580F-4F59-A521-93871D6A7087}.Release|Any CPU.ActiveCfg = Release|x86
+		{0A0CD9E1-580F-4F59-A521-93871D6A7087}.Release|Any CPU.Build.0 = Release|x86
+		{412EFBF7-75FB-40B3-9A58-AE89EE83EC22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{412EFBF7-75FB-40B3-9A58-AE89EE83EC22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{412EFBF7-75FB-40B3-9A58-AE89EE83EC22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{412EFBF7-75FB-40B3-9A58-AE89EE83EC22}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7FDEDA30-3C2C-4B76-B052-ACA9E15083C6} = {8604B172-0C4E-48B1-A384-092DB77C71E7}
+		{91E4EC49-D0A8-4055-8B03-BCE3CCF30440} = {FE27A597-3337-4B59-BFCC-308BDB684AC6}
+		{88881C2C-3688-4737-980E-8D012646389B} = {8604B172-0C4E-48B1-A384-092DB77C71E7}
+		{14092914-FD81-4937-B6D1-723231809344} = {FE27A597-3337-4B59-BFCC-308BDB684AC6}
+		{0A0CD9E1-580F-4F59-A521-93871D6A7087} = {FE27A597-3337-4B59-BFCC-308BDB684AC6}
+		{412EFBF7-75FB-40B3-9A58-AE89EE83EC22} = {8604B172-0C4E-48B1-A384-092DB77C71E7}
+	EndGlobalSection
+EndGlobal

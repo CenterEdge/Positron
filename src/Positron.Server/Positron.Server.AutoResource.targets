@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <BuildDependsOn>CollectAutoResources;$(BuildDependsOn)</BuildDependsOn>
+  </PropertyGroup>
+
+  <Target Name="CollectAutoResources" Condition=" '$(EnableAutoResourceCollection)' == 'true' ">
+    <ItemGroup>
+      <!-- Views -->
+      <Resource Include="**\*.cshtml"/>
+      <Resource Include="**\*.vbhtml"/>
+
+      <!-- Images -->
+      <Content Remove="**\*.png"/>
+      <Content Remove="**\*.jpg;**\*.jpeg"/>
+      <Content Remove="**\*.gif"/>
+      <Content Remove="**\*.bmp"/>
+      <Resource Include="**\*.png"/>
+      <Resource Include="**\*.jpg;**\*.jpeg"/>
+      <Resource Include="**\*.gif"/>
+      <Resource Include="**\*.bmp"/>
+
+      <!-- Javascript -->
+      <Content Remove="**\*.js"/>
+      <Resource Include="**\*.js"/>
+
+      <!-- Stylesheets -->
+      <Content Remove="**\*.css"/>
+      <Resource Include="**\*.css"/>
+
+      <!-- Fonts -->
+      <Content Remove="**\*.eot"/>
+      <Content Remove="**\*.svg"/>
+      <Content Remove="**\*.ttf"/>
+      <Content Remove="**\*.woff"/>
+      <Content Remove="**\*.woff2"/>
+      <Resource Include="**\*.eot"/>
+      <Resource Include="**\*.svg"/>
+      <Resource Include="**\*.ttf"/>
+      <Resource Include="**\*.woff"/>
+      <Resource Include="**\*.woff2"/>
+    </ItemGroup>
+  </Target>
+</Project>

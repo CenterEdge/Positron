@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+    <metadata>
+        <id>Positron.Server</id>
+        <version>0.1.0</version>
+        <authors>bburnett</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>
+			In-process MVC 6 web server.  Accepts in-process requests, and responds using views and resources
+			embedded in the assembly.
+		</description>
+        <copyright>Copyright (c) 2016 Pathfinder Software, LLC.  All Rights Reserved.</copyright>
+        <dependencies>
+            <dependency id="Microsoft.AspNetCore.Mvc" version="1.0.1" />
+			<dependency id="Microsoft.AspNetCore.Hosting" version="1.0.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\src\Positron.Server\Positron.Server.AutoResource.props" target="build\net452\Positron.Server.AutoResource.props" />
+        <file src="..\src\Positron.Server\Positron.Server.AutoResource.targets" target="build\net452\Positron.Server.AutoResource.targets" />
+        <file src="..\src\Positron.Server\bin\Release\Positron.Server.dll" target="lib\net452\Positron.Server.dll" />
+		<file src="..\src\Positron.Server\bin\Release\Positron.Server.xml" target="lib\net452\Positron.Server.xml" />
+    </files>
+</package>
