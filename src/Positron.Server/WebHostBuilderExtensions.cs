@@ -6,7 +6,7 @@ namespace Positron.Server
 {
     public static class WebHostBuilderExtensions
     {
-        public static IWebHostBuilder UseUsePositronServer(this IWebHostBuilder builder)
+        public static IWebHostBuilder UsePositronServer(this IWebHostBuilder builder)
         {
             builder.ConfigureServices(services =>
             {

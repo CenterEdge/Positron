@@ -10,7 +10,9 @@ namespace Positron.Application
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddUsePositronServer();
+            services
+                .AddPositronServer()
+                .AddControllersFromEntryPoint();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

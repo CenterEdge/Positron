@@ -29,7 +29,7 @@ namespace Positron.Application
 
             var builder = new WebHostBuilder()
                 .UseEnvironment(environmentName)
-                .UseUsePositronServer()
+                .UsePositronServer()
                 .UseStartup<Startup>();
 
             var webHost = builder.Build();

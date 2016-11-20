@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
     <metadata>
         <id>Positron.Server</id>
-        <version>0.1.0</version>
+        <version>0.1.1</version>
         <authors>bburnett</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>
@@ -16,8 +16,8 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="..\src\Positron.Server\Positron.Server.AutoResource.props" target="build\net452\Positron.Server.AutoResource.props" />
-        <file src="..\src\Positron.Server\Positron.Server.AutoResource.targets" target="build\net452\Positron.Server.AutoResource.targets" />
+        <file src="..\src\Positron.Server\Positron.Server.props" target="build\net452\Positron.Server.props" />
+        <file src="..\src\Positron.Server\Positron.Server.targets" target="build\net452\Positron.Server.targets" />
         <file src="..\src\Positron.Server\bin\Release\Positron.Server.dll" target="lib\net452\Positron.Server.dll" />
 		<file src="..\src\Positron.Server\bin\Release\Positron.Server.xml" target="lib\net452\Positron.Server.xml" />
     </files>

@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ApplicationBuilderExtensions.cs" />
     <Compile Include="AppSchemeResourceResolver.cs" />
+    <Compile Include="MvcBuilderExtensions.cs" />
     <Compile Include="PositronUrlHelper.cs" />
     <Compile Include="PositronUrlHelperFactory.cs" />
     <Compile Include="PositronViewLocationExpander.cs" />
@@ -77,8 +78,10 @@
     <Compile Include="WebHostBuilderExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Positron.Server.AutoResource.targets" />
-    <None Include="Positron.Server.AutoResource.props" />
+    <None Include="Positron.Server.targets">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Positron.Server.props" />
     <None Include="project.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,6 +10,7 @@ namespace Positron.UI.Builder
         IPositronUiBuilder ConfigureServices(Action<IServiceCollection> configureServices);
         IPositronUiBuilder SetWebHost(IWebHost webHost);
         IPositronUiBuilder ConfigureSettings(Action<CefSettings> settingsAction);
+        IPositronUiBuilder UseConsoleLogger(IConsoleLogger consoleLogger);
         IWindowHandler Build();
     }
 }

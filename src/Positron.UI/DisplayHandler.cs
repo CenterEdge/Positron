@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Media.Imaging;
@@ -11,11 +12,14 @@ namespace Positron.UI
     {
         private readonly PositronWindow _window;
         private readonly IAppSchemeResourceResolver _appSchemeResourceResolver;
+        private readonly IConsoleLogger _consoleLogger;
 
-        public DisplayHandler(PositronWindow window, IAppSchemeResourceResolver appSchemeResourceResolver)
+        public DisplayHandler(PositronWindow window, IAppSchemeResourceResolver appSchemeResourceResolver,
+            IConsoleLogger consoleLogger)
         {
             _window = window;
             _appSchemeResourceResolver = appSchemeResourceResolver;
+            _consoleLogger = consoleLogger;
         }
 
         public void OnAddressChanged(IWebBrowser browserControl, AddressChangedEventArgs addressChangedArgs)
@@ -62,7 +66,15 @@ namespace Positron.UI
 
         public bool OnConsoleMessage(IWebBrowser browserControl, ConsoleMessageEventArgs consoleMessageArgs)
         {
-            Debug.WriteLine(consoleMessageArgs.Message);
+            try
+            {
+                _consoleLogger?.WriteMessage(consoleMessageArgs);
+            }
+            catch
+            {
+                // ignored
+            }
+
             return true;
         }
     }

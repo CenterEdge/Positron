@@ -11,12 +11,12 @@ namespace Positron.Server
 {
     public static class ServiceCollectionExtensions
     {
-        public static IMvcBuilder AddUsePositronServer(this IServiceCollection collection)
+        public static IMvcBuilder AddPositronServer(this IServiceCollection collection)
         {
-            return collection.AddUsePositronServer(null);
+            return collection.AddPositronServer(null);
         }
 
-        public static IMvcBuilder AddUsePositronServer(this IServiceCollection collection, Action<MvcOptions> setupAction)
+        public static IMvcBuilder AddPositronServer(this IServiceCollection collection, Action<MvcOptions> setupAction)
         {
             collection.TryAddSingleton<IAssemblyIdentifierProvider, PositronAssemblyIdentifierProvider>();
             collection.TryAddSingleton<IAppSchemeResourceResolver, AppSchemeResourceResolver>();

@@ -56,6 +56,7 @@
     <Compile Include="Builder\PositronUiBuilder.cs" />
     <Compile Include="Builder\IPositronUiBuilder.cs" />
     <Compile Include="CefHeaderDictionary.cs" />
+    <Compile Include="IConsoleLogger.cs" />
     <Compile Include="PositronWindow.xaml.cs">
       <DependentUpon>PositronWindow.xaml</DependentUpon>
     </Compile>

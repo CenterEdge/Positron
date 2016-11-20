@@ -20,14 +20,6 @@
       <Resource Include="**\*.gif"/>
       <Resource Include="**\*.bmp"/>
 
-      <!-- Javascript -->
-      <Content Remove="**\*.js"/>
-      <Resource Include="**\*.js"/>
-
-      <!-- Stylesheets -->
-      <Content Remove="**\*.css"/>
-      <Resource Include="**\*.css"/>
-
       <!-- Fonts -->
       <Content Remove="**\*.eot"/>
       <Content Remove="**\*.svg"/>

@@ -12,6 +12,7 @@ namespace Positron.UI.Builder
     public class PositronUiBuilder : IPositronUiBuilder
     {
         private IWebHost _webHost;
+        private IConsoleLogger _consoleLogger;
         private readonly List<Action<IServiceCollection>> _configureServicesDelegates =
             new List<Action<IServiceCollection>>();
 
@@ -36,6 +37,12 @@ namespace Positron.UI.Builder
             }
 
             _webHost = webHost;
+            return this;
+        }
+
+        public IPositronUiBuilder UseConsoleLogger(IConsoleLogger consoleLogger)
+        {
+            _consoleLogger = consoleLogger;
             return this;
         }
 
@@ -90,6 +97,7 @@ namespace Positron.UI.Builder
 
             services.TryAddSingleton(_webHost.Services.GetService<IAppSchemeResourceResolver>());
             services.AddSingleton(_webHost);
+            services.AddSingleton(_consoleLogger);
 
             foreach (var configureServices in _configureServicesDelegates)
             {
