@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using System.Runtime.CompilerServices;
+using CefSharp;
+using CefSharp.Wpf;
 using Microsoft.AspNetCore.Hosting;
 using Positron.Application;
 using Positron.Server;
@@ -53,9 +56,16 @@ namespace Positron.WinFormsApplication
             var uiBuilder = new PositronUiBuilder()
                 .SetWebHost(webHost);
 
-            WindowHandler = uiBuilder.Build();
+            uiBuilder.UseConsoleLogger(new TestLogger());
+
+            int debugPort;
+
+            WindowHandler = int.TryParse(ConfigurationManager.AppSettings["debugPort"], out debugPort)
+                ? uiBuilder.Build(debugPort)
+                : uiBuilder.Build();
 
             System.Windows.Forms.Application.Run(new MainForm());
         }
     }
+
 }
