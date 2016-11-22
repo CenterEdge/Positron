@@ -18,7 +18,6 @@ namespace Positron.UI.Builder
             new List<Action<IServiceCollection>>();
 
         private bool _isBuilt;
-        private CefSettings _cefSettings;
 
         public IPositronUiBuilder ConfigureServices(Action<IServiceCollection> configureServices)
         {
@@ -58,7 +57,7 @@ namespace Positron.UI.Builder
             return this;
         }
 
-        public IWindowHandler Build(int? debugPort = null)
+        public IWindowHandler Build()
         {
             if (_isBuilt)
             {
@@ -78,18 +77,20 @@ namespace Positron.UI.Builder
                 options.Configure(settings);
             }
 
-#if DEBUG
-            if (debugPort.HasValue)
-            {
-                settings.RemoteDebuggingPort = debugPort.Value;
-            }
-#endif
-
             Cef.Initialize(settings, true, serviceProvider.GetService<IBrowserProcessHandler>());
 
             _isBuilt = true;
 
             return serviceProvider.GetService<IWindowHandler>();
+        }
+
+        public void UseDebugPort(int debugPort)
+        {
+            ConfigureSettings((settings) =>
+            {
+                settings.RemoteDebuggingPort = debugPort;
+
+            });
         }
 
         private IServiceCollection BuildServices()

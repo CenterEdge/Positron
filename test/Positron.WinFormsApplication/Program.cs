@@ -60,10 +60,12 @@ namespace Positron.WinFormsApplication
 
             int debugPort;
 
-            WindowHandler = int.TryParse(ConfigurationManager.AppSettings["debugPort"], out debugPort)
-                ? uiBuilder.Build(debugPort)
-                : uiBuilder.Build();
+            if (int.TryParse(ConfigurationManager.AppSettings["debugPort"], out debugPort))
+            {
+                uiBuilder.UseDebugPort(debugPort);
+            }
 
+            WindowHandler = uiBuilder.Build();
             System.Windows.Forms.Application.Run(new MainForm());
         }
     }

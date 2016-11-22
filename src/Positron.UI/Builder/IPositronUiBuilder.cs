@@ -11,6 +11,7 @@ namespace Positron.UI.Builder
         IPositronUiBuilder SetWebHost(IWebHost webHost);
         IPositronUiBuilder ConfigureSettings(Action<CefSettings> settingsAction);
         IPositronUiBuilder UseConsoleLogger(IConsoleLogger consoleLogger);
-        IWindowHandler Build(int? debugPort = null);
+        IWindowHandler Build();
+        void UseDebugPort(int debugPort);
     }
 }
