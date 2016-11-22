@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Positron.Server;
+using System.Configuration;
 
 namespace Positron.UI.Builder
 {
@@ -69,8 +70,8 @@ namespace Positron.UI.Builder
 
             var services = BuildServices();
             var serviceProvider = services.BuildServiceProvider();
-
             var settings = new CefSettings();
+
             foreach (var options in serviceProvider.GetServices<IConfigureOptions<CefSettings>>())
             {
                 options.Configure(settings);
@@ -81,6 +82,15 @@ namespace Positron.UI.Builder
             _isBuilt = true;
 
             return serviceProvider.GetService<IWindowHandler>();
+        }
+
+        public void UseDebugPort(int debugPort)
+        {
+            ConfigureSettings((settings) =>
+            {
+                settings.RemoteDebuggingPort = debugPort;
+
+            });
         }
 
         private IServiceCollection BuildServices()
@@ -98,6 +108,7 @@ namespace Positron.UI.Builder
             services.TryAddSingleton(_webHost.Services.GetService<IAppSchemeResourceResolver>());
             services.AddSingleton(_webHost);
             services.AddSingleton(_consoleLogger);
+
 
             foreach (var configureServices in _configureServicesDelegates)
             {
@@ -126,5 +137,7 @@ namespace Positron.UI.Builder
                 SchemeHandlerFactory = new AppSchemeHandlerFactory(_webHost)
             });
         }
+
+
     }
 }
