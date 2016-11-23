@@ -6,7 +6,7 @@ using System.Windows;
 using CefSharp;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Positron.Server;
+using Positron.Server.Hosting;
 using Positron.UI;
 using Positron.UI.Builder;
 

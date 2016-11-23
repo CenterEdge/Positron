@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Positron.Server.FileProvider;
+using Positron.Server.Hosting.FileProvider;
 
-namespace Positron.Server
+namespace Positron.Server.Hosting
 {
     internal class ConfigureRazorViewEngineOptions : IConfigureOptions<RazorViewEngineOptions>
     {

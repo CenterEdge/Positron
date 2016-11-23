@@ -4,7 +4,7 @@ using System.IO;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Primitives;
 
-namespace Positron.Server.FileProvider
+namespace Positron.Server.Hosting.FileProvider
 {
     public class ResourceFileProvider : IFileProvider
     {

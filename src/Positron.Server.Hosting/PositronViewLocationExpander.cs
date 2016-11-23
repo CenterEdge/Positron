@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Razor;
 
-namespace Positron.Server
+namespace Positron.Server.Hosting
 {
     public class PositronViewLocationExpander : IViewLocationExpander
     {

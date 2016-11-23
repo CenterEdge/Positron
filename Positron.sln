@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8604B172-0C4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Positron.UI", "src\Positron.UI\Positron.UI.csproj", "{7FDEDA30-3C2C-4B76-B052-ACA9E15083C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Positron.Server.UnitTests", "test\Positron.Server.UnitTests\Positron.Server.UnitTests.csproj", "{91E4EC49-D0A8-4055-8B03-BCE3CCF30440}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Positron.Server.Hosting.UnitTests", "test\Positron.Server.Hosting.UnitTests\Positron.Server.Hosting.UnitTests.csproj", "{91E4EC49-D0A8-4055-8B03-BCE3CCF30440}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{FE27A597-3337-4B59-BFCC-308BDB684AC6}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Positron.WinFormsApplication", "test\Positron.WinFormsApplication\Positron.WinFormsApplication.csproj", "{0A0CD9E1-580F-4F59-A521-93871D6A7087}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Positron.UI.WinFormsInterop", "src\Positron.UI.WinFormsInterop\Positron.UI.WinFormsInterop.csproj", "{412EFBF7-75FB-40B3-9A58-AE89EE83EC22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Positron.Server.Hosting", "src\Positron.Server.Hosting\Positron.Server.Hosting.csproj", "{F3296501-E5BA-47BF-9240-95FEFA0C1AF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,12 @@ Global
 		{412EFBF7-75FB-40B3-9A58-AE89EE83EC22}.Release|Any CPU.Build.0 = Release|Any CPU
 		{412EFBF7-75FB-40B3-9A58-AE89EE83EC22}.Test|Any CPU.ActiveCfg = Release|Any CPU
 		{412EFBF7-75FB-40B3-9A58-AE89EE83EC22}.Test|Any CPU.Build.0 = Release|Any CPU
+		{F3296501-E5BA-47BF-9240-95FEFA0C1AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3296501-E5BA-47BF-9240-95FEFA0C1AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3296501-E5BA-47BF-9240-95FEFA0C1AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3296501-E5BA-47BF-9240-95FEFA0C1AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3296501-E5BA-47BF-9240-95FEFA0C1AF6}.Test|Any CPU.ActiveCfg = Release|Any CPU
+		{F3296501-E5BA-47BF-9240-95FEFA0C1AF6}.Test|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,5 +81,6 @@ Global
 		{14092914-FD81-4937-B6D1-723231809344} = {FE27A597-3337-4B59-BFCC-308BDB684AC6}
 		{0A0CD9E1-580F-4F59-A521-93871D6A7087} = {FE27A597-3337-4B59-BFCC-308BDB684AC6}
 		{412EFBF7-75FB-40B3-9A58-AE89EE83EC22} = {8604B172-0C4E-48B1-A384-092DB77C71E7}
+		{F3296501-E5BA-47BF-9240-95FEFA0C1AF6} = {8604B172-0C4E-48B1-A384-092DB77C71E7}
 	EndGlobalSection
 EndGlobal

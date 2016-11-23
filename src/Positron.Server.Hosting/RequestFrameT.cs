@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Logging;
 
-namespace Positron.Server
+namespace Positron.Server.Hosting
 {
     class RequestFrame<TContext> : RequestFrame
     {

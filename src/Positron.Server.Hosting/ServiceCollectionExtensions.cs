@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
-using Positron.Server.FileProvider;
+using Positron.Server.Hosting.FileProvider;
 
-namespace Positron.Server
+namespace Positron.Server.Hosting
 {
     public static class ServiceCollectionExtensions
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.FileProviders;
 
-namespace Positron.Server.FileProvider
+namespace Positron.Server.Hosting.FileProvider
 {
     internal class ResourceDirectoryContents : IDirectoryContents
     {

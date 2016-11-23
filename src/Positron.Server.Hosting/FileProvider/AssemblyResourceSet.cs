@@ -10,7 +10,7 @@ using System.Windows;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Primitives;
 
-namespace Positron.Server.FileProvider
+namespace Positron.Server.Hosting.FileProvider
 {
     internal class AssemblyResourceSet : IFileProvider
     {

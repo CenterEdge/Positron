@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace Positron.Server
+namespace Positron.Server.Hosting
 {
     public static class WebHostBuilderExtensions
     {

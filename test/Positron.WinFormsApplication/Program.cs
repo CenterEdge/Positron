@@ -5,7 +5,7 @@ using CefSharp;
 using CefSharp.Wpf;
 using Microsoft.AspNetCore.Hosting;
 using Positron.Application;
-using Positron.Server;
+using Positron.Server.Hosting;
 using Positron.UI;
 using Positron.UI.Builder;
 

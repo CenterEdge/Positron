@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using Positron.Server.FileProvider;
+using Positron.Server.Hosting.FileProvider;
 using Xunit;
 
-namespace Positron.Server.UnitTests.FileProvider
+namespace Positron.Server.Hosting.UnitTests.FileProvider
 {
     public class AssemblyResourceSetTests
     {

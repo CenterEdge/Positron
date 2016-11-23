@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http.Features;
 
-namespace Positron.Server
+namespace Positron.Server.Hosting
 {
     class PositronServerContext
     {

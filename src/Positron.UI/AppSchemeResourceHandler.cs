@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using CefSharp;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
-using Positron.Server;
+using Positron.Server.Hosting;
 using Cookie = CefSharp.Cookie;
 
 namespace Positron.UI

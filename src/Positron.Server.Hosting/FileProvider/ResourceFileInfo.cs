@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Windows.Resources;
 using Microsoft.Extensions.FileProviders;
 
-namespace Positron.Server.FileProvider
+namespace Positron.Server.Hosting.FileProvider
 {
     internal class ResourceFileInfo : IFileInfo
     {

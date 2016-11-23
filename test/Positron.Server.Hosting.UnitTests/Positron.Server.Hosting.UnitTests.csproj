@@ -7,8 +7,8 @@
     <ProjectGuid>{91E4EC49-D0A8-4055-8B03-BCE3CCF30440}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Positron.Server.UnitTests</RootNamespace>
-    <AssemblyName>Positron.Server.UnitTests</AssemblyName>
+    <RootNamespace>Positron.Server.Hosting.UnitTests</RootNamespace>
+    <AssemblyName>Positron.Server.Hosting.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -50,6 +50,10 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Positron.Server.Hosting\Positron.Server.Hosting.csproj">
+      <Project>{f3296501-e5ba-47bf-9240-95fefa0c1af6}</Project>
+      <Name>Positron.Server.Hosting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Positron.Server\Positron.Server.csproj">
       <Project>{88881c2c-3688-4737-980e-8d012646389b}</Project>
       <Name>Positron.Server</Name>
@@ -60,6 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FileProvider\test2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

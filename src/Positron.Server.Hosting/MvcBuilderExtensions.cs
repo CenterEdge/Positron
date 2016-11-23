@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Positron.Server
+namespace Positron.Server.Hosting
 {
     public static class MvcBuilderExtensions
     {

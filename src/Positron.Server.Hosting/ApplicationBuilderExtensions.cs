@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
-using Positron.Server.FileProvider;
+using Positron.Server.Hosting.FileProvider;
 
-namespace Positron.Server
+namespace Positron.Server.Hosting
 {
     public static class ApplicationBuilderExtensions
     {

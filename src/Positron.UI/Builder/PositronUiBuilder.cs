@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Positron.Server;
 using System.Configuration;
+using Positron.UI.Internal;
 
 namespace Positron.UI.Builder
 {
@@ -107,8 +108,14 @@ namespace Positron.UI.Builder
 
             services.TryAddSingleton(_webHost.Services.GetService<IAppSchemeResourceResolver>());
             services.AddSingleton(_webHost);
-            services.AddSingleton(_consoleLogger);
-
+            if (_consoleLogger != null)
+            {
+                services.AddSingleton(_consoleLogger);
+            }
+            else
+            {
+                services.AddSingleton<IConsoleLogger>(new NullConsoleLogger());
+            }
 
             foreach (var configureServices in _configureServicesDelegates)
             {

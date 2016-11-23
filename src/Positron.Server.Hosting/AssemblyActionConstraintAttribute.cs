@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Positron.Server
+namespace Positron.Server.Hosting
 {
     class AssemblyActionConstraintAttribute : ActionMethodSelectorAttribute
     {

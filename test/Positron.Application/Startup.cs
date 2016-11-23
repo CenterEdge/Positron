@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Positron.Server;
+using Positron.Server.Hosting;
 
 namespace Positron.Application
 {

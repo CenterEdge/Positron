@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
     <metadata>
         <id>Positron.UI.WinFormsInterop</id>
-        <version>0.1.1</version>
+        <version>0.1.2</version>
         <authors>bburnett</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>
@@ -10,7 +10,7 @@
 		</description>
         <copyright>Copyright (c) 2016 Pathfinder Software, LLC.  All Rights Reserved.</copyright>
         <dependencies>
-			<dependency id="Positron.UI" version="0.1.1" />
+			<dependency id="Positron.UI" version="0.1.2" />
         </dependencies>
     </metadata>
     <files>

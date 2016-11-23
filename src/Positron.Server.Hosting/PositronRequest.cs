@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 
-namespace Positron.Server
+namespace Positron.Server.Hosting
 {
     public class PositronRequest : IHttpRequestFeature
     {

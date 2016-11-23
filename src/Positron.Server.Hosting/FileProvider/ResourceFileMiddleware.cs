@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace Positron.Server.FileProvider
+namespace Positron.Server.Hosting.FileProvider
 {
     public class ResourceFileMiddleware
     {
