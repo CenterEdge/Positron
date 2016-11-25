@@ -73,5 +73,10 @@ namespace Positron.UI
 
             return newWindow;
         }
+
+        public void Dispose()
+        {
+            Cef.Shutdown();
+        }
     }
 }

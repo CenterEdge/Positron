@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
     <metadata>
         <id>Positron.UI</id>
-        <version>0.1.2</version>
+        <version>0.1.3</version>
         <authors>bburnett</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>
@@ -10,8 +10,8 @@
 		</description>
         <copyright>Copyright (c) 2016 Pathfinder Software, LLC.  All Rights Reserved.</copyright>
         <dependencies>
-			<dependency id="Positron.Server" version="0.1.2" />
-			<dependency id="Positron.Server.Hosting" version="0.1.2" />
+			<dependency id="Positron.Server" version="0.1.3" />
+			<dependency id="Positron.Server.Hosting" version="0.1.3" />
             <dependency id="CefSharp.Wpf" version="53.0.0" />
 			<dependency id="Microsoft.Extensions.DependencyInjection" version="1.0.0" />
 			<dependency id="Microsoft.Extensions.Options" version="1.0.0" />
