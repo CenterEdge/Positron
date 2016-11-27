@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,56 +10,45 @@ namespace Positron.Server.Hosting
 {
     public static class MvcBuilderExtensions
     {
-        public static IMvcBuilder AddControllersFromEntryPoint(this IMvcBuilder builder)
+        public static IMvcBuilder AddApplicationParts(this IMvcBuilder builder, Func<string, bool> filePredicate)
         {
-            return AddControllersFromEntryPoint(builder, null);
+            return AddApplicationParts(builder, Path.GetDirectoryName(Assembly.GetEntryAssembly().Location),
+                filePredicate);
         }
 
-        public static IMvcBuilder AddControllersFromEntryPoint(this IMvcBuilder builder, Func<Assembly, bool> predicate)
+        public static IMvcBuilder AddApplicationParts(this IMvcBuilder builder, string path,
+            Func<string, bool> filePredicate)
         {
-            var processed = new HashSet<Assembly>();
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+            if (filePredicate == null)
+            {
+                throw new ArgumentNullException(nameof(filePredicate));
+            }
 
-            AddControllersAndRecurse(builder, Assembly.GetEntryAssembly(), predicate, processed);
+            foreach (var file in Directory.GetFiles(path, "*.exe").Concat(Directory.GetFiles(path, "*.dll")))
+            {
+                if (filePredicate(file))
+                {
+                    try
+                    {
+                        var assembly = Assembly.LoadFile(file);
+
+                        if (assembly.GetReferencedAssemblies().Any(p => p.Name == "Microsoft.AspNetCore.Mvc.Core"))
+                        {
+                            builder = builder.AddApplicationPart(assembly);
+                        }
+                    }
+                    catch
+                    {
+                        // Ignore assemblies that fail to load
+                    }
+                }
+            }
 
             return builder;
-        }
-
-        private static void AddControllersAndRecurse(IMvcBuilder builder, Assembly assembly,
-            Func<Assembly, bool> predicate, HashSet<Assembly> processed)
-        {
-            if (processed.Contains(assembly))
-            {
-                // Already processed this assembly, skip
-                return;
-            }
-
-            processed.Add(assembly);
-
-            if ((predicate != null) && !predicate(assembly))
-            {
-                // This assembly and dependencies are excluded
-                return;
-            }
-
-            if (assembly.GetReferencedAssemblies().Any(p => p.Name == "Microsoft.AspNetCore.Mvc.Core"))
-            {
-                builder.AddApplicationPart(assembly);
-            }
-
-            foreach (var referencedAssemblyName in assembly.GetReferencedAssemblies()
-                .Where(p => !p.Name.StartsWith("System") && !p.Name.StartsWith("Microsoft.") && (p.Name != "mscorlib")))
-            {
-                try
-                {
-                    var referencedAssembly = Assembly.Load(referencedAssemblyName);
-
-                    AddControllersAndRecurse(builder, referencedAssembly, predicate, processed);
-                }
-                catch
-                {
-                    // ignore missing assemblies
-                }
-            }
         }
     }
 }

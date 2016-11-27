@@ -38,6 +38,9 @@ namespace Positron.Server.Hosting
             {
                 options.AdditionalCompilationReferences.Add(MetadataReference.CreateFromFile(reference.Location));
             }
+
+            options.CompilationOptions = options.CompilationOptions.WithUsings(
+                "Microsoft.AspNetCore.Html");
         }
 
         private void CollectReferences(HashSet<Assembly> hashSet, IEnumerable<AssemblyName> references)

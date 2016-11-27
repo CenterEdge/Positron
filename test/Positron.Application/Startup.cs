@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.IO;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -12,7 +13,8 @@ namespace Positron.Application
         {
             services
                 .AddPositronServer()
-                .AddControllersFromEntryPoint();
+                // ReSharper disable once PossibleNullReferenceException
+                .AddApplicationParts(p => Path.GetFileName(p).StartsWith("Positron"));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

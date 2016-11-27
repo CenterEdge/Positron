@@ -20,16 +20,20 @@ namespace Positron.Server.Hosting
         {
             collection.TryAddSingleton<IAssemblyIdentifierProvider, PositronAssemblyIdentifierProvider>();
             collection.TryAddSingleton<IAppSchemeResourceResolver, AppSchemeResourceResolver>();
-            collection.TryAddTransient<IConfigureOptions<RazorViewEngineOptions>, ConfigureRazorViewEngineOptions>();
             collection.TryAddSingleton<IUrlHelperFactory, PositronUrlHelperFactory>();
             collection.TryAddSingleton<ResourceFileProvider>();
 
-            return collection.AddMvc(options =>
+            var builder = collection.AddMvc(options =>
             {
                 options.Conventions.Add(new PositronModelConvention());
 
                 setupAction?.Invoke(options);
             });
+
+            collection.TryAddEnumerable(
+                ServiceDescriptor.Transient<IConfigureOptions<RazorViewEngineOptions>, ConfigureRazorViewEngineOptions>());
+
+            return builder;
         }
     }
 }

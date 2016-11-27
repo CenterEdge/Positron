@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
     <metadata>
         <id>Positron.Server</id>
-        <version>0.1.3</version>
+        <version>0.1.4</version>
         <authors>bburnett</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>

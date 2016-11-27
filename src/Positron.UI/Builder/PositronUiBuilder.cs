@@ -85,9 +85,9 @@ namespace Positron.UI.Builder
             return serviceProvider.GetService<IWindowHandler>();
         }
 
-        public void UseDebugPort(int debugPort)
+        public IPositronUiBuilder UseDebugPort(int debugPort)
         {
-            ConfigureSettings((settings) =>
+            return ConfigureSettings((settings) =>
             {
                 settings.RemoteDebuggingPort = debugPort;
 
