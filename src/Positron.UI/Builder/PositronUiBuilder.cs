@@ -105,6 +105,7 @@ namespace Positron.UI.Builder
             services.TryAddSingleton<IRequestHandler, RequestHandler>();
             services.TryAddSingleton<IWindowHandler, WindowHandler>();
             services.TryAddSingleton<ILifeSpanHandler, LifeSpanHandler>();
+            services.TryAddSingleton<IKeyboardHandler, KeyboardHandler>();
 
             services.TryAddSingleton(_webHost.Services.GetService<IAppSchemeResourceResolver>());
             services.AddSingleton(_webHost);

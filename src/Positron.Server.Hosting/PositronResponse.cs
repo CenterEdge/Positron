@@ -18,7 +18,7 @@ namespace Positron.Server.Hosting
             throw new NotImplementedException();
         }
 
-        public int StatusCode { get; set; }
+        public int StatusCode { get; set; } = 200;
         public string ReasonPhrase { get; set; }
         public IHeaderDictionary Headers { get; set; }
         public Stream Body { get; set; }

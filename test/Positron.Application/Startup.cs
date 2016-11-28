@@ -1,4 +1,5 @@
-﻿using System.IO;
+
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,7 @@ namespace Positron.Application
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStatusCodePages();
             app.UsePositron();
         }
     }
