@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Positron.Server;
-using System.Configuration;
 using Positron.UI.Internal;
 
 namespace Positron.UI.Builder
@@ -19,6 +18,7 @@ namespace Positron.UI.Builder
             new List<Action<IServiceCollection>>();
 
         private bool _isBuilt;
+        private int _debugPort;
 
         public IPositronUiBuilder ConfigureServices(Action<IServiceCollection> configureServices)
         {
@@ -87,6 +87,7 @@ namespace Positron.UI.Builder
 
         public IPositronUiBuilder UseDebugPort(int debugPort)
         {
+            _debugPort = debugPort;
             return ConfigureSettings((settings) =>
             {
                 settings.RemoteDebuggingPort = debugPort;
@@ -105,7 +106,7 @@ namespace Positron.UI.Builder
             services.TryAddSingleton<IRequestHandler, RequestHandler>();
             services.TryAddSingleton<IWindowHandler, WindowHandler>();
             services.TryAddSingleton<ILifeSpanHandler, LifeSpanHandler>();
-            services.TryAddSingleton<IKeyboardHandler, KeyboardHandler>();
+            services.TryAddSingleton<IKeyboardHandler>(new KeyboardHandler(_debugPort));
 
             services.TryAddSingleton(_webHost.Services.GetService<IAppSchemeResourceResolver>());
             services.AddSingleton(_webHost);
