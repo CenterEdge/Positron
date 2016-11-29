@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Positron.Server;
-using System.Configuration;
 using Positron.UI.Internal;
 
 namespace Positron.UI.Builder
@@ -69,9 +68,9 @@ namespace Positron.UI.Builder
                 throw new InvalidOperationException("An IWebHost must be provided via SetWebHost.");
             }
 
-            var services = BuildServices();
-            var serviceProvider = services.BuildServiceProvider();
             var settings = new CefSettings();
+            var services = BuildServices(settings);
+            var serviceProvider = services.BuildServiceProvider();
 
             foreach (var options in serviceProvider.GetServices<IConfigureOptions<CefSettings>>())
             {
@@ -94,7 +93,7 @@ namespace Positron.UI.Builder
             });
         }
 
-        private IServiceCollection BuildServices()
+        private IServiceCollection BuildServices(CefSettings settings)
         {
             var services = new ServiceCollection();
 
@@ -105,7 +104,7 @@ namespace Positron.UI.Builder
             services.TryAddSingleton<IRequestHandler, RequestHandler>();
             services.TryAddSingleton<IWindowHandler, WindowHandler>();
             services.TryAddSingleton<ILifeSpanHandler, LifeSpanHandler>();
-            services.TryAddSingleton<IKeyboardHandler, KeyboardHandler>();
+            services.TryAddSingleton<IKeyboardHandler>(new KeyboardHandler(settings));
 
             services.TryAddSingleton(_webHost.Services.GetService<IAppSchemeResourceResolver>());
             services.AddSingleton(_webHost);
