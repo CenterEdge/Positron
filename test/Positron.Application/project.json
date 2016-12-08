@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
     "CefSharp.Wpf": "53.0.0",
-    "Microsoft.AspNetCore.Hosting": "1.0.0",
-    "Microsoft.AspNetCore.Diagnostics": "1.0.0"
+    "Microsoft.AspNetCore.Diagnostics": "1.0.0",
+    "Microsoft.AspNetCore.Hosting": "1.0.0"
   },
   "frameworks": {
     "net452": {}

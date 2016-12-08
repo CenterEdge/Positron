@@ -41,7 +41,7 @@ namespace Positron.UI
                 return;
             }
 
-            if (uriString.StartsWith("app://positron"))
+            if (uriString.StartsWith("http://positron"))
             {
                 var uri = _appSchemeResourceResolver.GetResourceUri(uriString);
 

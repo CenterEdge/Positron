@@ -13,7 +13,7 @@ namespace Positron.WinFormsApplication
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            var dialog = Program.WindowHandler.CreateWindowFromWinForms(this, "app://positron/Positron.Application");
+            var dialog = Program.WindowHandler.CreateWindowFromWinForms(this, "http://positron/Positron.Application");
             dialog.ShowDialog();
         }
     }

@@ -52,13 +52,14 @@ namespace Positron.Application
 
             var uiBuilder = new PositronUiBuilder()
                 .SetWebHost(webHost)
+                .UseDebugPort(8080)
                 .ConfigureServices(services =>
                 {
                     services.AddSingleton<IGlobalScriptObject, TestScriptObject>();
                 });
 
             var windowHandler = uiBuilder.Build();
-            app.Run(windowHandler.CreateWindow((Window)null, "app://positron/Positron.Application"));
+            app.Run(windowHandler.CreateWindow((Window)null, "http://positron/Positron.Application"));
         }
     }
 }

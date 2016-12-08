@@ -23,9 +23,9 @@ namespace Positron.Server
                 throw new ArgumentNullException(nameof(input));
             }
 
-            if (input.StartsWith("app://positron"))
+            if (input.StartsWith("http://positron"))
             {
-                input = input.Substring(11);
+                input = input.Substring(15);
             }
 
             if (input[0] != '/')

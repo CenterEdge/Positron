@@ -12,13 +12,13 @@ using Cookie = CefSharp.Cookie;
 
 namespace Positron.UI
 {
-    class AppSchemeResourceHandler : IResourceHandler
+    class PositronResourceHandler : IResourceHandler
     {
         private readonly IWebHost _webHost;
         private Uri _requestUri;
         private IHttpResponseFeature _response;
 
-        public AppSchemeResourceHandler(IWebHost webHost)
+        public PositronResourceHandler(IWebHost webHost)
         {
             _webHost = webHost;
         }
@@ -41,6 +41,11 @@ namespace Positron.UI
                 Scheme = "http",
                 Headers = new CefHeaderDictionary(request.Headers)
             };
+
+            if (request.PostData != null && request.PostData.Elements.Any())
+            {
+                internalRequest.Body = new MemoryStream(request.PostData.Elements.First().Bytes);
+            }
 
             Task.Run(() =>
             {
@@ -65,7 +70,11 @@ namespace Positron.UI
 
                             callback.Cancel();
                         }
-                    }, TaskContinuationOptions.NotOnRanToCompletion);
+                    }, TaskContinuationOptions.NotOnRanToCompletion)
+                    .ContinueWith(task =>
+                    {
+                        internalRequest.Body?.Dispose();
+                    });
             });
 
             return true;

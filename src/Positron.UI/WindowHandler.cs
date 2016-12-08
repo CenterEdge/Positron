@@ -39,7 +39,8 @@ namespace Positron.UI
                 Address = url,
                 RequestHandler = Services.GetRequiredService<IRequestHandler>(),
                 LifeSpanHandler = Services.GetRequiredService<ILifeSpanHandler>(),
-                KeyboardHandler = Services.GetRequiredService<IKeyboardHandler>()
+                KeyboardHandler = Services.GetRequiredService<IKeyboardHandler>(),
+                ResourceHandlerFactory = Services.GetRequiredService<IResourceHandlerFactory>()
             };
 
             if (!_globalScriptObjectsRegistered)

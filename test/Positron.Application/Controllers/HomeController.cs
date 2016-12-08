@@ -1,17 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Positron.Application.Models;
 
 namespace Positron.Application.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Test()
+        public IActionResult Test()
         {
             return View();
+        }
+
+        public IActionResult TestAjax([FromBody] TestModel model)
+        {
+            return Json(model);
         }
     }
 }

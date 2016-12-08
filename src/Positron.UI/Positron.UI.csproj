@@ -51,8 +51,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppSchemeHandlerFactory.cs" />
-    <Compile Include="AppSchemeResourceHandler.cs" />
+    <Compile Include="PositronResourceHandlerFactory.cs" />
+    <Compile Include="PositronResourceHandler.cs" />
     <Compile Include="BrowserProcessHandler.cs" />
     <Compile Include="Builder\PositronUiBuilder.cs" />
     <Compile Include="Builder\IPositronUiBuilder.cs" />

@@ -57,6 +57,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\TestModel.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="TestScriptObject.cs" />
     <Page Include="App.xaml">
@@ -124,6 +125,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="css\main.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Scripts\jquery-3.1.1.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Scripts\main.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\src\Positron.Server\Positron.Server.targets" />

@@ -102,6 +102,7 @@ namespace Positron.UI.Builder
 
             services.TryAddSingleton<IBrowserProcessHandler, BrowserProcessHandler>();
             services.TryAddSingleton<IRequestHandler, RequestHandler>();
+            services.TryAddSingleton<IResourceHandlerFactory, PositronResourceHandlerFactory>();
             services.TryAddSingleton<IWindowHandler, WindowHandler>();
             services.TryAddSingleton<ILifeSpanHandler, LifeSpanHandler>();
             services.TryAddSingleton<IKeyboardHandler>(new KeyboardHandler(settings));
@@ -134,15 +135,6 @@ namespace Positron.UI.Builder
             settings.CefCommandLineArgs.Add("disable-plugins-discovery", "1");
 
             settings.SetOffScreenRenderingBestPerformanceArgs();
-
-            settings.RegisterScheme(new CefCustomScheme
-            {
-                SchemeName = "app",
-                IsLocal = false,
-                IsDisplayIsolated = false,
-                IsStandard = false,
-                SchemeHandlerFactory = new AppSchemeHandlerFactory(_webHost)
-            });
         }
 
 

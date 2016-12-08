@@ -29,7 +29,7 @@ namespace Positron.UI
         public virtual CefReturnValue OnBeforeResourceLoad(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request,
             IRequestCallback callback)
         {
-            if (!request.Url.StartsWith("app://positron"))
+            if (!request.Url.StartsWith("http://positron"))
             {
                 callback.Dispose();
                 return CefReturnValue.Cancel;
