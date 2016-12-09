@@ -15,6 +15,14 @@ namespace Positron.Application.Controllers
             return View();
         }
 
+        public IActionResult TestId(string id)
+        {
+            return Json(new TestModel
+            {
+                Value = id
+            });
+        }
+        
         public IActionResult TestAjax([FromBody] TestModel model)
         {
             return Json(model);

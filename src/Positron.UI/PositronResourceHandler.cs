@@ -36,9 +36,9 @@ namespace Positron.UI
             {
                 Protocol = "HTTP/1.1",
                 Method = request.Method,
-                Path = url.AbsolutePath,
+                Path = Uri.UnescapeDataString(url.AbsolutePath),
                 QueryString = url.Query,
-                Scheme = "http",
+                Scheme = url.Scheme,
                 Headers = new CefHeaderDictionary(request.Headers)
             };
 
