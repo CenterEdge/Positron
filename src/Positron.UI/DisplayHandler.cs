@@ -2,24 +2,30 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using CefSharp;
-using Positron.Server;
+using Microsoft.AspNetCore.Hosting;
+using Positron.Server.Hosting;
 
 namespace Positron.UI
 {
     class DisplayHandler : IDisplayHandler
     {
         private readonly PositronWindow _window;
-        private readonly IAppSchemeResourceResolver _appSchemeResourceResolver;
         private readonly IConsoleLogger _consoleLogger;
+        private readonly IWebHost _webHost;
 
-        public DisplayHandler(PositronWindow window, IAppSchemeResourceResolver appSchemeResourceResolver,
-            IConsoleLogger consoleLogger)
+        private CancellationTokenSource _previousFaviconRequest;
+
+        public DisplayHandler(PositronWindow window, IConsoleLogger consoleLogger, IWebHost webHost)
         {
             _window = window;
-            _appSchemeResourceResolver = appSchemeResourceResolver;
             _consoleLogger = consoleLogger;
+            _webHost = webHost;
         }
 
         public void OnAddressChanged(IWebBrowser browserControl, AddressChangedEventArgs addressChangedArgs)
@@ -35,20 +41,56 @@ namespace Positron.UI
 
         public void OnFaviconUrlChange(IWebBrowser browserControl, IBrowser browser, IList<string> urls)
         {
-            var uriString = urls.FirstOrDefault();
-            if (uriString == null)
+            if (_previousFaviconRequest != null)
             {
-                return;
+                _previousFaviconRequest.Cancel();
             }
 
-            if (uriString.StartsWith("http://positron"))
-            {
-                var uri = _appSchemeResourceResolver.GetResourceUri(uriString);
+            _previousFaviconRequest = new CancellationTokenSource();
+            var cancellationToken = _previousFaviconRequest.Token;
 
-                _window.Dispatcher.InvokeAsync(() => {
-                    _window.Icon = new BitmapImage(uri);
-                });
-            }
+            _window.Dispatcher.InvokeAsync(async () =>
+            {
+                foreach (var uriString in urls)
+                {
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        // Stop loop if cancelled
+                        break;
+                    }
+
+                    try
+                    {
+                        BitmapImage image;
+
+                        if (uriString.StartsWith("http://positron/"))
+                        {
+                            image = await LoadPositronImage(new Uri(uriString));
+                        }
+                        else
+                        {
+                            // For normal urls, use built in WPF image loader
+                            image = new BitmapImage(new Uri(uriString));
+                        }
+
+                        if (cancellationToken.IsCancellationRequested)
+                        {
+                            // Don't set image if we've cancelled, let new task set new image
+                            break;
+                        }
+
+                        _window.Icon = image;
+
+                        break;
+                    }
+                    catch
+                    {
+                        // TODO add logging
+
+                        // Ignore error and try next url
+                    }
+                }
+            }, DispatcherPriority.Normal, cancellationToken);
         }
 
         public void OnFullscreenModeChange(IWebBrowser browserControl, IBrowser browser, bool fullscreen)
@@ -76,6 +118,19 @@ namespace Positron.UI
             }
 
             return true;
+        }
+
+        private async Task<BitmapImage> LoadPositronImage(Uri uri)
+        {
+            using (var client = new HttpClient(new PositronInterceptingHttpHandler(_webHost)))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.StreamSource = await client.GetStreamAsync(uri);
+                image.EndInit();
+
+                return image;
+            }
         }
     }
 }

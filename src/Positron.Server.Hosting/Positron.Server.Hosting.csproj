@@ -48,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationBuilderExtensions.cs" />
+    <Compile Include="HttpClientHeaderDictionary.cs" />
     <Compile Include="MvcBuilderExtensions.cs" />
+    <Compile Include="PositronInterceptingHttpHandler.cs" />
     <Compile Include="PositronViewLocationExpander.cs" />
     <Compile Include="AssemblyActionConstraintAttribute.cs" />
     <Compile Include="ConfigureRazorViewEngineOptions.cs" />

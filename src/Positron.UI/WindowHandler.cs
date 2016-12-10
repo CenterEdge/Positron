@@ -2,6 +2,7 @@
 using System.Windows;
 using CefSharp;
 using CefSharp.Wpf;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Positron.Server;
 
@@ -9,27 +10,18 @@ namespace Positron.UI
 {
     public class WindowHandler : IWindowHandler
     {
-        private readonly IAppSchemeResourceResolver _appSchemeResourceResolver;
-        private readonly IConsoleLogger _consoleLogger;
         private bool _globalScriptObjectsRegistered;
 
         public IServiceProvider Services { get; }
 
-        public WindowHandler(IServiceProvider services, IAppSchemeResourceResolver appSchemeResourceResolver,
-            IConsoleLogger consoleLogger)
+        public WindowHandler(IServiceProvider services)
         {
             if (services == null)
             {
                 throw new ArgumentNullException(nameof(services));
             }
-            if (appSchemeResourceResolver == null)
-            {
-                throw new ArgumentNullException(nameof(appSchemeResourceResolver));
-            }
 
             Services = services;
-            _appSchemeResourceResolver = appSchemeResourceResolver;
-            _consoleLogger = consoleLogger;
         }
 
         private ChromiumWebBrowser CreateBrowser(string url)
@@ -71,7 +63,9 @@ namespace Positron.UI
                 Content = browser
             };
 
-            browser.DisplayHandler = new DisplayHandler(newWindow, _appSchemeResourceResolver, _consoleLogger);
+            browser.DisplayHandler = new DisplayHandler(newWindow,
+                Services.GetService<IConsoleLogger>(),
+                Services.GetRequiredService<IWebHost>());
 
             return newWindow;
         }

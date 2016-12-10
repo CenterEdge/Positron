@@ -3,17 +3,18 @@
   <PropertyGroup>
     <BuildDependsOn>CollectAutoResources;$(BuildDependsOn)</BuildDependsOn>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <AutoResourceExtensions Include="cshtml" Condition=" '$(AutoResourceCollectViews)'  == 'true' " />
     <AutoResourceExtensions Include="vbhtml" Condition=" '$(AutoResourceCollectViews)'  == 'true' " />
-	
+
     <AutoResourceExtensions Include="png"    Condition=" '$(AutoResourceCollectImages)' == 'true' " />
     <AutoResourceExtensions Include="jpg"    Condition=" '$(AutoResourceCollectImages)' == 'true' " />
     <AutoResourceExtensions Include="jpeg"   Condition=" '$(AutoResourceCollectImages)' == 'true' " />
     <AutoResourceExtensions Include="gif"    Condition=" '$(AutoResourceCollectImages)' == 'true' " />
     <AutoResourceExtensions Include="bmp"    Condition=" '$(AutoResourceCollectImages)' == 'true' " />
-	
+    <AutoResourceExtensions Include="ico"    Condition=" '$(AutoResourceCollectImages)' == 'true' " />
+
     <AutoResourceExtensions Include="eot"    Condition=" '$(AutoResourceCollectFonts)'  == 'true' " />
     <AutoResourceExtensions Include="svg"    Condition=" '$(AutoResourceCollectFonts)'  == 'true' " />
     <AutoResourceExtensions Include="ttf"    Condition=" '$(AutoResourceCollectFonts)'  == 'true' " />
@@ -23,7 +24,7 @@
 
   <Target Name="CollectAutoResources" Condition=" '$(EnableAutoResourceCollection)' == 'true' ">
     <ItemGroup>
-      <Resource Include="**\*.%(AutoResourceExtensions.Identity)" Exclude="$(AutoResourceExclusions)" />      
+      <Resource Include="**\*.%(AutoResourceExtensions.Identity)" Exclude="$(AutoResourceExclusions)" />
     </ItemGroup>
   </Target>
 </Project>
