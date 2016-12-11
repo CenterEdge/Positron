@@ -110,15 +110,6 @@ namespace Positron.UI.Builder
             return serviceProvider.GetService<IWindowHandler>();
         }
 
-        public IPositronUiBuilder UseDebugPort(int debugPort)
-        {
-            return ConfigureSettings((settings) =>
-            {
-                settings.RemoteDebuggingPort = debugPort;
-
-            });
-        }
-
         private IServiceCollection BuildServices(CefSettings settings)
         {
             var services = new ServiceCollection();

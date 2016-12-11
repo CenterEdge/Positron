@@ -15,6 +15,5 @@ namespace Positron.UI.Builder
         IPositronUiBuilder UseConsoleLogger(IConsoleLogger consoleLogger);
         IPositronUiBuilder UseLoggerFactory(ILoggerFactory loggerFactory);
         IWindowHandler Build();
-        IPositronUiBuilder UseDebugPort(int debugPort);
     }
 }

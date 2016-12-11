@@ -51,6 +51,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builder\PositronUiBuilderExtensions.cs" />
     <Compile Include="Internal\LoggerEventIds.cs" />
     <Compile Include="Internal\PositronResourceHandlerFactory.cs" />
     <Compile Include="Internal\PositronResourceHandler.cs" />
