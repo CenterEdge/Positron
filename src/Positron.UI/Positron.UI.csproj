@@ -51,6 +51,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Internal\LoggerEventIds.cs" />
     <Compile Include="PositronResourceHandlerFactory.cs" />
     <Compile Include="PositronResourceHandler.cs" />
     <Compile Include="BrowserProcessHandler.cs" />

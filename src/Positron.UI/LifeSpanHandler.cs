@@ -3,21 +3,29 @@ using System.Windows;
 using System.Windows.Interop;
 using CefSharp;
 using CefSharp.Wpf;
+using Microsoft.Extensions.Logging;
+using Positron.UI.Internal;
 
 namespace Positron.UI
 {
     public class LifeSpanHandler : ILifeSpanHandler
     {
         private readonly IWindowHandler _windowHandler;
+        private readonly ILogger<LifeSpanHandler> _logger;
 
-        public LifeSpanHandler(IWindowHandler windowHandler)
+        public LifeSpanHandler(IWindowHandler windowHandler, ILogger<LifeSpanHandler> logger)
         {
             if (windowHandler == null)
             {
                 throw new ArgumentNullException(nameof(windowHandler));
             }
+            if (logger == null)
+            {
+                throw new ArgumentNullException(nameof(logger));
+            }
 
             _windowHandler = windowHandler;
+            _logger = logger;
         }
 
         public bool OnBeforePopup(IWebBrowser browserControl, IBrowser browser, IFrame frame, string targetUrl, string targetFrameName,
@@ -30,6 +38,8 @@ namespace Positron.UI
                 (targetDisposition == WindowOpenDisposition.NewBackgroundTab) ||
                 (targetDisposition == WindowOpenDisposition.NewWindow))
             {
+                _logger.LogInformation(LoggerEventIds.PopupWindowOpen, "Opening new window for popup url '{0}'", targetUrl);
+
                 var chromiumWebBrowser = (ChromiumWebBrowser) browserControl;
                 ChromiumWebBrowser newWpfBrowser = null;
 
@@ -48,6 +58,8 @@ namespace Positron.UI
 
                     newWindow.Closed += (o, e) =>
                     {
+                        _logger.LogInformation(LoggerEventIds.PopupWindowClose, "Popup window closed, disposing browser");
+
                         var window = o as Window;
                         var closingBrowser = window?.Content as IWebBrowser;
                         if (closingBrowser != null)
@@ -59,11 +71,14 @@ namespace Positron.UI
                         var openingWindow = window?.Owner;
                         if (openingWindow != null)
                         {
+                            _logger.LogDebug(LoggerEventIds.PopupWindowClose, "Enabling parent window");
                             openingWindow.IsEnabled = true;
 
                             var openingBrowser = openingWindow.Content as IWebBrowser;
                             if (openingBrowser != null)
                             {
+                                _logger.LogDebug(LoggerEventIds.PopupWindowClose, "Sending dialogHandler.complete() to parent window");
+
                                 openingBrowser.ExecuteScriptAsync(
                                     $@"if (dialogHandler && dialogHandler.complete) dialogHandler.complete();");
                             }
@@ -87,6 +102,8 @@ namespace Positron.UI
 
                 if (owner != null && owner.Content == browserControl)
                 {
+                    _logger.LogDebug(LoggerEventIds.PopupWindowOpen, "Showing popup window");
+
                     owner.Show();
                 }
             });
@@ -109,6 +126,8 @@ namespace Positron.UI
 
                     if (owner != null && owner.Content == browserControl)
                     {
+                        _logger.LogDebug(LoggerEventIds.PopupWindowClose, "Closing popup window due to browser close");
+
                         owner.Close();
                     }
                 });

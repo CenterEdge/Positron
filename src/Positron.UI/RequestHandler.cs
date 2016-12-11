@@ -1,9 +1,24 @@
-﻿using CefSharp;
+﻿using System;
+using CefSharp;
+using Microsoft.Extensions.Logging;
+using Positron.UI.Internal;
 
 namespace Positron.UI
 {
     public class RequestHandler : IRequestHandler
     {
+        private readonly ILogger<RequestHandler> _logger;
+
+        public RequestHandler(ILogger<RequestHandler> logger)
+        {
+            if (logger == null)
+            {
+                throw new ArgumentNullException(nameof(logger));
+            }
+
+            _logger = logger;
+        }
+
         public bool OnBeforeBrowse(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, bool isRedirect)
         {
             return false;
@@ -29,8 +44,10 @@ namespace Positron.UI
         public virtual CefReturnValue OnBeforeResourceLoad(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request,
             IRequestCallback callback)
         {
-            if (!request.Url.StartsWith("http://positron"))
+            if (!request.Url.StartsWith("http://positron/"))
             {
+                _logger.LogWarning(LoggerEventIds.ExternalResource, "Preventing load of external resource '{0}'", request.Url);
+
                 callback.Dispose();
                 return CefReturnValue.Cancel;
             }

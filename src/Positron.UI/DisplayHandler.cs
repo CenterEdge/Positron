@@ -9,7 +9,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using CefSharp;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 using Positron.Server.Hosting;
+using Positron.UI.Internal;
 
 namespace Positron.UI
 {
@@ -18,14 +20,16 @@ namespace Positron.UI
         private readonly PositronWindow _window;
         private readonly IConsoleLogger _consoleLogger;
         private readonly IWebHost _webHost;
+        private readonly ILogger<DisplayHandler> _logger;
 
         private CancellationTokenSource _previousFaviconRequest;
 
-        public DisplayHandler(PositronWindow window, IConsoleLogger consoleLogger, IWebHost webHost)
+        public DisplayHandler(PositronWindow window, IConsoleLogger consoleLogger, IWebHost webHost, ILogger<DisplayHandler> logger)
         {
             _window = window;
             _consoleLogger = consoleLogger;
             _webHost = webHost;
+            _logger = logger;
         }
 
         public void OnAddressChanged(IWebBrowser browserControl, AddressChangedEventArgs addressChangedArgs)
@@ -83,9 +87,9 @@ namespace Positron.UI
 
                         break;
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        // TODO add logging
+                        _logger.LogInformation(LoggerEventIds.FaviconError, ex, "Unable to load favicon {0}", uriString);
 
                         // Ignore error and try next url
                     }

@@ -4,6 +4,7 @@ using CefSharp;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Positron.Server;
 using Positron.UI.Internal;
@@ -14,8 +15,11 @@ namespace Positron.UI.Builder
     {
         private IWebHost _webHost;
         private IConsoleLogger _consoleLogger;
+        private ILoggerFactory _loggerFactory;
         private readonly List<Action<IServiceCollection>> _configureServicesDelegates =
             new List<Action<IServiceCollection>>();
+        private readonly List<Action<ILoggerFactory>> _configureLoggingDelegates =
+            new List<Action<ILoggerFactory>>();
 
         private bool _isBuilt;
 
@@ -47,6 +51,12 @@ namespace Positron.UI.Builder
             return this;
         }
 
+        public IPositronUiBuilder UseLoggerFactory(ILoggerFactory loggerFactory)
+        {
+            _loggerFactory = loggerFactory;
+            return this;
+        }
+
         public IPositronUiBuilder ConfigureSettings(Action<CefSettings> settingsAction)
         {
             _configureServicesDelegates.Add(services =>
@@ -54,6 +64,22 @@ namespace Positron.UI.Builder
                 services.Configure(settingsAction);
             });
 
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a delegate for configuring the provided <see cref="ILoggerFactory"/>. This may be called multiple times.
+        /// </summary>
+        /// <param name="configureLogging">The delegate that configures the <see cref="ILoggerFactory"/>.</param>
+        /// <returns>The <see cref="IWebHostBuilder"/>.</returns>
+        public IPositronUiBuilder ConfigureLogging(Action<ILoggerFactory> configureLogging)
+        {
+            if (configureLogging == null)
+            {
+                throw new ArgumentNullException(nameof(configureLogging));
+            }
+
+            _configureLoggingDelegates.Add(configureLogging);
             return this;
         }
 
@@ -100,12 +126,35 @@ namespace Positron.UI.Builder
             services.AddOptions();
             services.Configure<CefSettings>(DefaultCefSettings);
 
+            // These settings will be updated later
+            // Registering here will allow the final settings to be injected if needed
+            services.TryAddSingleton(settings);
+
+            if (_loggerFactory == null)
+            {
+                // By default, if we haven't configured a specific logger factory then reuse the one from IWebHost
+                _loggerFactory = _webHost.Services.GetRequiredService<ILoggerFactory>();
+                services.AddSingleton(provider => _loggerFactory);
+            }
+            else
+            {
+                services.AddSingleton(_loggerFactory);
+            }
+
+            foreach (var configureLogging in _configureLoggingDelegates)
+            {
+                configureLogging(_loggerFactory);
+            }
+
+            //This is required to add ILogger of T.
+            services.AddLogging();
+
             services.TryAddSingleton<IBrowserProcessHandler, BrowserProcessHandler>();
             services.TryAddSingleton<IRequestHandler, RequestHandler>();
             services.TryAddSingleton<IResourceHandlerFactory, PositronResourceHandlerFactory>();
             services.TryAddSingleton<IWindowHandler, WindowHandler>();
             services.TryAddSingleton<ILifeSpanHandler, LifeSpanHandler>();
-            services.TryAddSingleton<IKeyboardHandler>(new KeyboardHandler(settings));
+            services.TryAddSingleton<IKeyboardHandler, KeyboardHandler>();
 
             services.TryAddSingleton(_webHost.Services.GetService<IAppSchemeResourceResolver>());
             services.AddSingleton(_webHost);

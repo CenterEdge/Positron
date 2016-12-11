@@ -6,6 +6,7 @@ using System.Windows;
 using CefSharp;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Positron.Server.Hosting;
 using Positron.UI;
 using Positron.UI.Builder;
@@ -29,6 +30,10 @@ namespace Positron.Application
 
             var builder = new WebHostBuilder()
                 .UseEnvironment(environmentName)
+                .ConfigureLogging(factory =>
+                {
+                    factory.AddConsole();
+                })
                 .UsePositronServer()
                 .UseStartup<Startup>();
 
