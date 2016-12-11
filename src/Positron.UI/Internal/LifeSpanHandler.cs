@@ -4,11 +4,10 @@ using System.Windows.Interop;
 using CefSharp;
 using CefSharp.Wpf;
 using Microsoft.Extensions.Logging;
-using Positron.UI.Internal;
 
-namespace Positron.UI
+namespace Positron.UI.Internal
 {
-    public class LifeSpanHandler : ILifeSpanHandler
+    internal class LifeSpanHandler : ILifeSpanHandler
     {
         private readonly IWindowHandler _windowHandler;
         private readonly ILogger<LifeSpanHandler> _logger;

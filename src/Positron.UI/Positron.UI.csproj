@@ -52,25 +52,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Internal\LoggerEventIds.cs" />
-    <Compile Include="PositronResourceHandlerFactory.cs" />
-    <Compile Include="PositronResourceHandler.cs" />
-    <Compile Include="BrowserProcessHandler.cs" />
+    <Compile Include="Internal\PositronResourceHandlerFactory.cs" />
+    <Compile Include="Internal\PositronResourceHandler.cs" />
+    <Compile Include="Internal\BrowserProcessHandler.cs" />
     <Compile Include="Builder\PositronUiBuilder.cs" />
     <Compile Include="Builder\IPositronUiBuilder.cs" />
-    <Compile Include="CefHeaderDictionary.cs" />
+    <Compile Include="Internal\CefHeaderDictionary.cs" />
     <Compile Include="IConsoleLogger.cs" />
     <Compile Include="Internal\NullConsoleLogger.cs" />
-    <Compile Include="KeyboardHandler.cs" />
+    <Compile Include="Internal\KeyboardHandler.cs" />
     <Compile Include="PositronWindow.xaml.cs">
       <DependentUpon>PositronWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DisplayHandler.cs" />
+    <Compile Include="Internal\DisplayHandler.cs" />
     <Compile Include="IGlobalScriptObject.cs" />
     <Compile Include="IWindowHandler.cs" />
-    <Compile Include="LifeSpanHandler.cs" />
+    <Compile Include="Internal\LifeSpanHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestHandler.cs" />
-    <Compile Include="WindowHandler.cs" />
+    <Compile Include="Internal\RequestHandler.cs" />
+    <Compile Include="Internal\WindowHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

@@ -1,11 +1,10 @@
 ﻿using System;
 using CefSharp;
 using Microsoft.Extensions.Logging;
-using Positron.UI.Internal;
 
-namespace Positron.UI
+namespace Positron.UI.Internal
 {
-    public class RequestHandler : IRequestHandler
+    internal class RequestHandler : IRequestHandler
     {
         private readonly ILogger<RequestHandler> _logger;
 

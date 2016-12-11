@@ -7,7 +7,7 @@ using CefSharp;
 
 namespace Positron.UI.Internal
 {
-    class NullConsoleLogger : IConsoleLogger
+    internal class NullConsoleLogger : IConsoleLogger
     {
         public void WriteMessage(ConsoleMessageEventArgs message)
         {

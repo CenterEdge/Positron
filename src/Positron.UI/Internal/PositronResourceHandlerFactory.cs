@@ -3,9 +3,9 @@ using CefSharp;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Positron.UI
+namespace Positron.UI.Internal
 {
-    class PositronResourceHandlerFactory : IResourceHandlerFactory
+    internal class PositronResourceHandlerFactory : IResourceHandlerFactory
     {
         private readonly IWebHost _webHost;
         private readonly ILoggerFactory _loggerFactory;

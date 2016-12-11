@@ -10,12 +10,11 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using Positron.Server.Hosting;
-using Positron.UI.Internal;
 using Cookie = CefSharp.Cookie;
 
-namespace Positron.UI
+namespace Positron.UI.Internal
 {
-    class PositronResourceHandler : IResourceHandler
+    internal class PositronResourceHandler : IResourceHandler
     {
         private readonly IWebHost _webHost;
         private readonly ILogger<PositronResourceHandler> _logger;

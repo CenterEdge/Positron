@@ -1,6 +1,6 @@
 ﻿using CefSharp;
 
-namespace Positron.UI
+namespace Positron.UI.Internal
 {
     internal class BrowserProcessHandler : IBrowserProcessHandler
     {

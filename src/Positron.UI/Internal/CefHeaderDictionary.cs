@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 
-namespace Positron.UI
+namespace Positron.UI.Internal
 {
     internal class CefHeaderDictionary : HeaderDictionary
     {

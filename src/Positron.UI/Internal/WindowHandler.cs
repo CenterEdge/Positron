@@ -5,12 +5,10 @@ using CefSharp.Wpf;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Positron.Server;
-using Positron.UI.Internal;
 
-namespace Positron.UI
+namespace Positron.UI.Internal
 {
-    public class WindowHandler : IWindowHandler
+    internal class WindowHandler : IWindowHandler
     {
         private readonly ILogger<WindowHandler> _logger;
         private bool _globalScriptObjectsRegistered;

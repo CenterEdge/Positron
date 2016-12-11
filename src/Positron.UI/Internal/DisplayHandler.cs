@@ -11,11 +11,10 @@ using CefSharp;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using Positron.Server.Hosting;
-using Positron.UI.Internal;
 
-namespace Positron.UI
+namespace Positron.UI.Internal
 {
-    class DisplayHandler : IDisplayHandler
+    internal class DisplayHandler : IDisplayHandler
     {
         private readonly PositronWindow _window;
         private readonly IConsoleLogger _consoleLogger;
