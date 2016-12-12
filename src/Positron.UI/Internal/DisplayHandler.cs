@@ -125,7 +125,7 @@ namespace Positron.UI.Internal
 
         private async Task<BitmapImage> LoadPositronImage(Uri uri)
         {
-            using (var client = new HttpClient(new PositronInterceptingHttpHandler(_webHost)))
+            using (var client = new HttpClient(new PositronHttpMessageHandler(_webHost)))
             {
                 var image = new BitmapImage();
                 image.BeginInit();

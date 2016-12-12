@@ -6,14 +6,21 @@ using Microsoft.Extensions.Primitives;
 
 namespace Positron.Server.Hosting.FileProvider
 {
+    /// <summary>
+    /// Positron implementation of <see cref="IFileProvider"/> that reads files from assembly resources.
+    /// </summary>
     public class ResourceFileProvider : IFileProvider
     {
-        private readonly IAssemblyIdentifierProvider _assemblyIdentifierProvider;
+        private readonly IPositronRouteIdentifierProvider _assemblyIdentifierProvider;
 
         private readonly ConcurrentDictionary<string, AssemblyResourceSet> _resourceSets =
             new ConcurrentDictionary<string, AssemblyResourceSet>();
 
-        public ResourceFileProvider(IAssemblyIdentifierProvider assemblyIdentifierProvider)
+        /// <summary>
+        /// Creates a new <see cref="ResourceFileProvider"/>.
+        /// </summary>
+        /// <param name="assemblyIdentifierProvider"><see cref="IPositronRouteIdentifierProvider"/> to resolve route identifiers into assemblies.</param>
+        public ResourceFileProvider(IPositronRouteIdentifierProvider assemblyIdentifierProvider)
         {
             if (assemblyIdentifierProvider == null)
             {
@@ -55,6 +62,7 @@ namespace Positron.Server.Hosting.FileProvider
             });
         }
 
+        /// <inheritdoc cref="IFileProvider"/>
         public IFileInfo GetFileInfo(string subpath)
         {
             if (subpath == null)
@@ -75,6 +83,7 @@ namespace Positron.Server.Hosting.FileProvider
                 resourceSet.GetFileInfo(trailingPath);
         }
 
+        /// <inheritdoc cref="IFileProvider"/>
         public IDirectoryContents GetDirectoryContents(string subpath)
         {
             if (subpath == null)
@@ -95,6 +104,7 @@ namespace Positron.Server.Hosting.FileProvider
                 resourceSet.GetDirectoryContents(trailingPath);
         }
 
+        /// <inheritdoc cref="IFileProvider"/>
         public IChangeToken Watch(string filter)
         {
             return NullChangeToken.Singleton;

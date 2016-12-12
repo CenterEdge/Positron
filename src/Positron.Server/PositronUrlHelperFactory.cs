@@ -5,10 +5,14 @@ using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace Positron.Server
 {
+    /// <summary>
+    /// Creates <see cref="PositronUrlHelper"/> instances for MVC requests.
+    /// </summary>
     public class PositronUrlHelperFactory : IUrlHelperFactory
     {
         private const string PropertyOfTypeCannotBeNull = "Property {1} of type {0} cannot be null.";
 
+        /// <inheritdoc cref="IUrlHelperFactory"/>
         public IUrlHelper GetUrlHelper(ActionContext context)
         {
             var httpContext = context.HttpContext;

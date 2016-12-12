@@ -7,18 +7,36 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Positron.Server.Hosting.Internal;
 
 namespace Positron.Server.Hosting
 {
-    public class PositronInterceptingHttpHandler : DelegatingHandler
+    /// <summary>
+    /// <see cref="HttpMessageHandler"/> to use with <see cref="HttpClient"/> which routes Positron URLs
+    /// to the Positron server.  All other URLs are handled via the provided HttpMessageHandler.
+    /// </summary>
+    public class PositronHttpMessageHandler : DelegatingHandler
     {
         private readonly IInternalHttpRequestFeature _requestFeature;
 
-        public PositronInterceptingHttpHandler(IWebHost webHost) : this(webHost, new HttpClientHandler())
+        /// <summary>
+        /// Creates a <see cref="PositronHttpMessageHandler"/>, using <see cref="HttpClientHandler"/> as the fallback
+        /// for generic URLs.
+        /// </summary>
+        /// <param name="webHost"><see cref="IWebHost"/> of a Positron server to receive requests.</param>
+        /// <remarks>The <see cref="IWebHost"/> must support the <see cref="IInternalHttpRequestFeature"/> feature.</remarks>
+        public PositronHttpMessageHandler(IWebHost webHost) : this(webHost, new HttpClientHandler())
         {
         }
 
-        public PositronInterceptingHttpHandler(IWebHost webHost, HttpMessageHandler innerHandler)
+        /// <summary>
+        /// Creates a <see cref="PositronHttpMessageHandler"/>, using a provided handler as the fallback
+        /// for generic URLs.
+        /// </summary>
+        /// <param name="webHost"><see cref="IWebHost"/> of a Positron server to receive requests.</param>
+        /// <param name="innerHandler">Handler to use as a fallback for non-Positron requests.</param>
+        /// <remarks>The <see cref="IWebHost"/> must support the <see cref="IInternalHttpRequestFeature"/> feature.</remarks>
+        public PositronHttpMessageHandler(IWebHost webHost, HttpMessageHandler innerHandler)
             : base(innerHandler)
         {
             if (webHost == null)
@@ -33,6 +51,7 @@ namespace Positron.Server.Hosting
             }
         }
 
+        /// <inheritdoc />
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             if (request.RequestUri.Scheme == "http" && request.RequestUri.Host == "positron")
@@ -43,6 +62,7 @@ namespace Positron.Server.Hosting
             return base.SendAsync(request, cancellationToken);
         }
 
+        /// <inheritdoc />
         private async Task<HttpResponseMessage> ProcessPositronRequest(HttpRequestMessage request,
             CancellationToken cancellationToken)
         {

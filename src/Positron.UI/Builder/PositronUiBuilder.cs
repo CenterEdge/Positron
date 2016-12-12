@@ -11,6 +11,9 @@ using Positron.UI.Internal;
 
 namespace Positron.UI.Builder
 {
+    /// <summary>
+    /// A builder for <see cref="IPositronUi"/>.
+    /// </summary>
     public class PositronUiBuilder : IPositronUiBuilder
     {
         private IWebHost _webHost;
@@ -23,6 +26,7 @@ namespace Positron.UI.Builder
 
         private bool _isBuilt;
 
+        /// <inheritdoc cref="IPositronUiBuilder"/>
         public IPositronUiBuilder ConfigureServices(Action<IServiceCollection> configureServices)
         {
             if (configureServices == null)
@@ -34,6 +38,7 @@ namespace Positron.UI.Builder
             return this;
         }
 
+        /// <inheritdoc cref="IPositronUiBuilder"/>
         public IPositronUiBuilder SetWebHost(IWebHost webHost)
         {
             if (webHost == null)
@@ -45,18 +50,21 @@ namespace Positron.UI.Builder
             return this;
         }
 
+        /// <inheritdoc cref="IPositronUiBuilder"/>
         public IPositronUiBuilder UseConsoleLogger(IConsoleLogger consoleLogger)
         {
             _consoleLogger = consoleLogger;
             return this;
         }
 
+        /// <inheritdoc cref="IPositronUiBuilder"/>
         public IPositronUiBuilder UseLoggerFactory(ILoggerFactory loggerFactory)
         {
             _loggerFactory = loggerFactory;
             return this;
         }
 
+        /// <inheritdoc cref="IPositronUiBuilder"/>
         public IPositronUiBuilder ConfigureSettings(Action<CefSettings> settingsAction)
         {
             _configureServicesDelegates.Add(services =>
@@ -67,11 +75,7 @@ namespace Positron.UI.Builder
             return this;
         }
 
-        /// <summary>
-        /// Adds a delegate for configuring the provided <see cref="ILoggerFactory"/>. This may be called multiple times.
-        /// </summary>
-        /// <param name="configureLogging">The delegate that configures the <see cref="ILoggerFactory"/>.</param>
-        /// <returns>The <see cref="IWebHostBuilder"/>.</returns>
+        /// <inheritdoc cref="IPositronUiBuilder"/>
         public IPositronUiBuilder ConfigureLogging(Action<ILoggerFactory> configureLogging)
         {
             if (configureLogging == null)
@@ -83,7 +87,8 @@ namespace Positron.UI.Builder
             return this;
         }
 
-        public IWindowHandler Build()
+        /// <inheritdoc cref="IPositronUiBuilder"/>
+        public IPositronUi Build()
         {
             if (_isBuilt)
             {
@@ -107,7 +112,7 @@ namespace Positron.UI.Builder
 
             _isBuilt = true;
 
-            return serviceProvider.GetService<IWindowHandler>();
+            return serviceProvider.GetService<IPositronUi>();
         }
 
         private IServiceCollection BuildServices(CefSettings settings)
@@ -143,11 +148,11 @@ namespace Positron.UI.Builder
             services.TryAddSingleton<IBrowserProcessHandler, BrowserProcessHandler>();
             services.TryAddSingleton<IRequestHandler, RequestHandler>();
             services.TryAddSingleton<IResourceHandlerFactory, PositronResourceHandlerFactory>();
-            services.TryAddSingleton<IWindowHandler, WindowHandler>();
+            services.TryAddSingleton<IPositronUi, PositronUi>();
             services.TryAddSingleton<ILifeSpanHandler, LifeSpanHandler>();
             services.TryAddSingleton<IKeyboardHandler, KeyboardHandler>();
 
-            services.TryAddSingleton(_webHost.Services.GetService<IAppSchemeResourceResolver>());
+            services.TryAddSingleton(_webHost.Services.GetService<IPositronResourceResolver>());
             services.AddSingleton(_webHost);
             if (_consoleLogger != null)
             {

@@ -2,11 +2,18 @@
 
 namespace Positron.Server
 {
-    public class AppSchemeResourceResolver : IAppSchemeResourceResolver
+    /// <summary>
+    /// Resolves Positron URIs into pack:// resource URIs.
+    /// </summary>
+    public class PositronResourceResolver : IPositronResourceResolver
     {
-        private readonly IAssemblyIdentifierProvider _assemblyIdentifierProvider;
+        private readonly IPositronRouteIdentifierProvider _assemblyIdentifierProvider;
 
-        public AppSchemeResourceResolver(IAssemblyIdentifierProvider assemblyIdentifierProvider)
+        /// <summary>
+        /// Creates a new <see cref="PositronResourceResolver"/>.
+        /// </summary>
+        /// <param name="assemblyIdentifierProvider"><see cref="IPositronRouteIdentifierProvider"/> to identify assemblies for routes.</param>
+        public PositronResourceResolver(IPositronRouteIdentifierProvider assemblyIdentifierProvider)
         {
             if (assemblyIdentifierProvider == null)
             {
@@ -16,6 +23,11 @@ namespace Positron.Server
             _assemblyIdentifierProvider = assemblyIdentifierProvider;
         }
 
+        /// <summary>
+        /// Resolves Positron URIs into pack:// resource URIs.
+        /// </summary>
+        /// <param name="input">Positron URI to resolve.</param>
+        /// <returns>pack:// resource URI.</returns>
         public Uri GetResourceUri(string input)
         {
             if (input == null)

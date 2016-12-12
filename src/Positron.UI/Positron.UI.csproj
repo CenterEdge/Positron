@@ -67,11 +67,11 @@
     </Compile>
     <Compile Include="Internal\DisplayHandler.cs" />
     <Compile Include="IGlobalScriptObject.cs" />
-    <Compile Include="IWindowHandler.cs" />
+    <Compile Include="IPositronUi.cs" />
     <Compile Include="Internal\LifeSpanHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Internal\RequestHandler.cs" />
-    <Compile Include="Internal\WindowHandler.cs" />
+    <Compile Include="Internal\PositronUi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

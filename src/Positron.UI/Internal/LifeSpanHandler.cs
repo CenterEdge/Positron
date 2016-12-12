@@ -9,10 +9,10 @@ namespace Positron.UI.Internal
 {
     internal class LifeSpanHandler : ILifeSpanHandler
     {
-        private readonly IWindowHandler _windowHandler;
+        private readonly IPositronUi _windowHandler;
         private readonly ILogger<LifeSpanHandler> _logger;
 
-        public LifeSpanHandler(IWindowHandler windowHandler, ILogger<LifeSpanHandler> logger)
+        public LifeSpanHandler(IPositronUi windowHandler, ILogger<LifeSpanHandler> logger)
         {
             if (windowHandler == null)
             {

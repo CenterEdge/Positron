@@ -7,13 +7,20 @@ using Positron.Server.Utils;
 
 namespace Positron.Server
 {
-    public class PositronAssemblyIdentifierProvider : IAssemblyIdentifierProvider
+    /// <summary>
+    /// Provides information about assembly identities, based upon <see cref="PositronRouteIdentifierAttribute" />.
+    /// </summary>
+    public class PositronRouteIdentifierProvider : IPositronRouteIdentifierProvider
     {
         private readonly ConcurrentDictionary<string, AssemblyPart> _cacheByIdentifier = new ConcurrentDictionary<string, AssemblyPart>(new CaseInsenstiveEqualityComparer());
         private readonly ConcurrentDictionary<string, string> _cacheByAssemblyName = new ConcurrentDictionary<string, string>();
         private readonly ApplicationPartManager _applicationPartManager;
 
-        public PositronAssemblyIdentifierProvider(ApplicationPartManager applicationPartManager)
+        /// <summary>
+        /// Creates a new <see cref="PositronRouteIdentifierProvider"/>.
+        /// </summary>
+        /// <param name="applicationPartManager"><see cref="ApplicationPartManager"/> used to get appliation parts defined in the application.</param>
+        public PositronRouteIdentifierProvider(ApplicationPartManager applicationPartManager)
         {
             if (applicationPartManager == null)
             {
@@ -25,6 +32,7 @@ namespace Positron.Server
             LoadAssemblies();
         }
 
+        /// <inheritdoc cref="IPositronRouteIdentifierProvider"/>
         public AssemblyPart GetApplicationPart(string identifier)
         {
             if (string.IsNullOrEmpty(identifier))
@@ -43,6 +51,7 @@ namespace Positron.Server
             }
         }
 
+        /// <inheritdoc cref="IPositronRouteIdentifierProvider"/>
         public string GetIdentifier(AssemblyName assemblyName)
         {
             if (assemblyName == null)

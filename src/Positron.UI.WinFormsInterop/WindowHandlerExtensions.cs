@@ -3,18 +3,18 @@
 namespace Positron.UI.WinFormsInterop
 {
     /// <summary>
-    /// Provides extensions to <see cref="IWindowHandler"/>.
+    /// Provides extensions to <see cref="IPositronUi"/>.
     /// </summary>
     public static class WindowHandlerExtensions
     {
         /// <summary>
         /// Create a new <see cref="PositronWindow"/> with a WinForms window as this parent.
         /// </summary>
-        /// <param name="windowHandler"><see cref="IWindowHandler"/> used to create the window.</param>
+        /// <param name="windowHandler"><see cref="IPositronUi"/> used to create the window.</param>
         /// <param name="owner">WinForms owner.</param>
         /// <param name="targetUrl">Initial URL to display on load.</param>
         /// <returns>New <see cref="PositronWindow"/>, ready to receive a ShowDialog call.</returns>
-        public static PositronWindow CreateWindowFromWinForms(this IWindowHandler windowHandler,
+        public static PositronWindow CreateWindowFromWinForms(this IPositronUi windowHandler,
             System.Windows.Forms.IWin32Window owner, string targetUrl)
         {
             var window = windowHandler.CreateWindow(null, targetUrl);

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http.Features;
 
-namespace Positron.Server.Hosting
+namespace Positron.Server.Hosting.Internal
 {
-    class PositronServerContext
+    internal class PositronServerContext
     {
         public Func<IHttpRequestFeature, RequestFrame> FrameFactory { get; set; }
     }

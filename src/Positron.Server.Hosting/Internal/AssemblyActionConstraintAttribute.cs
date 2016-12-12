@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Positron.Server.Hosting
+namespace Positron.Server.Hosting.Internal
 {
-    class AssemblyActionConstraintAttribute : ActionMethodSelectorAttribute
+    internal class AssemblyActionConstraintAttribute : ActionMethodSelectorAttribute
     {
         public override bool IsValidForRequest(RouteContext routeContext, ActionDescriptor action)
         {
@@ -16,7 +16,7 @@ namespace Positron.Server.Hosting
                 return true;
             }
 
-            var identifierProvider = routeContext.HttpContext.RequestServices.GetService<IAssemblyIdentifierProvider>();
+            var identifierProvider = routeContext.HttpContext.RequestServices.GetService<IPositronRouteIdentifierProvider>();
             var expectedAssembly = identifierProvider.GetIdentifier(reflectedAction.MethodInfo.DeclaringType?.Assembly?.GetName());
 
             return routeContext.RouteData.Values["assembly"]?.ToString().ToLowerInvariant() == expectedAssembly;

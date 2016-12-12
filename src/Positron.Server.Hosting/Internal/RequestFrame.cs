@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 
-namespace Positron.Server.Hosting
+namespace Positron.Server.Hosting.Internal
 {
-    abstract class RequestFrame : IFeatureCollection
+    internal abstract class RequestFrame : IFeatureCollection
     {
         private Dictionary<Type, object> _extraFeatures;
 

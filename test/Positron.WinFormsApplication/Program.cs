@@ -13,7 +13,7 @@ namespace Positron.WinFormsApplication
 {
     static class Program
     {
-        public static IWindowHandler WindowHandler { get; private set; }
+        public static IPositronUi WindowHandler { get; private set; }
 
         /// <summary>
         /// The main entry point for the application.

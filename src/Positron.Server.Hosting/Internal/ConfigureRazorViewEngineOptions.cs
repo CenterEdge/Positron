@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Positron.Server.Hosting.FileProvider;
 
-namespace Positron.Server.Hosting
+namespace Positron.Server.Hosting.Internal
 {
     internal class ConfigureRazorViewEngineOptions : IConfigureOptions<RazorViewEngineOptions>
     {

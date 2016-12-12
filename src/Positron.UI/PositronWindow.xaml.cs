@@ -1,10 +1,9 @@
 ﻿namespace Positron.UI
 {
     /// <summary>
-    /// Interaction logic for PositronWindow.xaml
+    /// Positron window containing a Chromium browser.
     /// </summary>
     public partial class PositronWindow
     {
-        public object ResultData { get; set; }
     }
 }

@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Logging;
 
-namespace Positron.Server.Hosting
+namespace Positron.Server.Hosting.Internal
 {
-    class RequestFrame<TContext> : RequestFrame
+    internal class RequestFrame<TContext> : RequestFrame
     {
         // ReSharper disable once StaticMemberInGenericType
         private static readonly EventId ProcessRequestError = new EventId(1000, "Positron.Server.ProcessRequestError");

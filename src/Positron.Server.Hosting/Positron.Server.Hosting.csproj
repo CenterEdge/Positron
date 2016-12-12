@@ -48,25 +48,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationBuilderExtensions.cs" />
-    <Compile Include="HttpClientHeaderDictionary.cs" />
+    <Compile Include="Internal\HttpClientHeaderDictionary.cs" />
     <Compile Include="MvcBuilderExtensions.cs" />
-    <Compile Include="PositronInterceptingHttpHandler.cs" />
+    <Compile Include="PositronHttpMessageHandler.cs" />
     <Compile Include="PositronViewLocationExpander.cs" />
-    <Compile Include="AssemblyActionConstraintAttribute.cs" />
-    <Compile Include="ConfigureRazorViewEngineOptions.cs" />
-    <Compile Include="PositronModelConvention.cs" />
+    <Compile Include="Internal\AssemblyActionConstraintAttribute.cs" />
+    <Compile Include="Internal\ConfigureRazorViewEngineOptions.cs" />
+    <Compile Include="Internal\PositronModelConvention.cs" />
     <Compile Include="PositronRequest.cs" />
-    <Compile Include="PositronResponse.cs" />
-    <Compile Include="PositronServer.cs" />
-    <Compile Include="PositronServerContext.cs" />
+    <Compile Include="Internal\PositronResponse.cs" />
+    <Compile Include="Internal\PositronServer.cs" />
+    <Compile Include="Internal\PositronServerContext.cs" />
     <Compile Include="FileProvider\AssemblyResourceSet.cs" />
     <Compile Include="FileProvider\ResourceDirectoryContents.cs" />
     <Compile Include="FileProvider\ResourceFileInfo.cs" />
     <Compile Include="FileProvider\ResourceFileProvider.cs" />
     <Compile Include="IInternalHttpRequestFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestFrame.cs" />
-    <Compile Include="RequestFrameT.cs" />
+    <Compile Include="Internal\RequestFrame.cs" />
+    <Compile Include="Internal\RequestFrameT.cs" />
     <Compile Include="FileProvider\ResourceFileMiddleware.cs" />
     <Compile Include="ServiceCollectionExtensions.cs" />
     <Compile Include="WebHostBuilderExtensions.cs" />

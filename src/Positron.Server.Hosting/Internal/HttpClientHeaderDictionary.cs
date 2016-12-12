@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 
-namespace Positron.Server.Hosting
+namespace Positron.Server.Hosting.Internal
 {
     internal class HttpClientHeaderDictionary : HeaderDictionary
     {

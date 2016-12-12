@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Logging;
 
-namespace Positron.Server.Hosting
+namespace Positron.Server.Hosting.Internal
 {
     internal class PositronServer : IServer, IInternalHttpRequestFeature
     {

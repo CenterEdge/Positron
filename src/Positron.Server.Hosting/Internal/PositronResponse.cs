@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 
-namespace Positron.Server.Hosting
+namespace Positron.Server.Hosting.Internal
 {
-    class PositronResponse : IHttpResponseFeature
+    internal class PositronResponse : IHttpResponseFeature
     {
         public void OnStarting(Func<object, Task> callback, object state)
         {

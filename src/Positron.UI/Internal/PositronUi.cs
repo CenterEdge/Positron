@@ -8,14 +8,14 @@ using Microsoft.Extensions.Logging;
 
 namespace Positron.UI.Internal
 {
-    internal class WindowHandler : IWindowHandler
+    internal class PositronUi : IPositronUi
     {
-        private readonly ILogger<WindowHandler> _logger;
+        private readonly ILogger<PositronUi> _logger;
         private bool _globalScriptObjectsRegistered;
 
         public IServiceProvider Services { get; }
 
-        public WindowHandler(IServiceProvider services, ILogger<WindowHandler> logger)
+        public PositronUi(IServiceProvider services, ILogger<PositronUi> logger)
         {
             if (services == null)
             {

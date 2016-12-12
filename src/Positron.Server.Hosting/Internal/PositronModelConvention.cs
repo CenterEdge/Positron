@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
-namespace Positron.Server.Hosting
+namespace Positron.Server.Hosting.Internal
 {
-    class PositronModelConvention : IApplicationModelConvention
+    internal class PositronModelConvention : IApplicationModelConvention
     {
         public void Apply(ApplicationModel application)
         {
