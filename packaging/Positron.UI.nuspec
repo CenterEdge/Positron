@@ -1,24 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
-    <metadata>
-        <id>Positron.UI</id>
-        <version>0.1.5</version>
-        <authors>bburnett</authors>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>
-			Chromium based application UI, which uses Positron.Server to provide in-process content.
+	<metadata>
+		<id>Positron.UI</id>
+		<version>0.1.5</version>
+		<authors>btburnett3</authors>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<title>Positron UI</title>
+		<description>
+			Chromium based application UI, which uses Positron.Server.Hosting to provide in-process content.
 		</description>
-        <copyright>Copyright (c) 2016 Pathfinder Software, LLC.  All Rights Reserved.</copyright>
-        <dependencies>
+		<tags>Positron ASP.Net Core MVC Chromium CefSharp</tags>
+		<projectUrl>https://github.com/CenterEdge/Positron</projectUrl>
+		<licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+		<copyright>Copyright (c) 2016 Pathfinder Software, LLC.  All Rights Reserved.</copyright>
+		<dependencies>
 			<dependency id="Positron.Server" version="0.1.5" />
 			<dependency id="Positron.Server.Hosting" version="0.1.5" />
-            <dependency id="CefSharp.Wpf" version="53.0.0" />
+			<dependency id="CefSharp.Wpf" version="53.0.0" />
 			<dependency id="Microsoft.Extensions.DependencyInjection" version="1.0.0" />
 			<dependency id="Microsoft.Extensions.Options" version="1.0.0" />
-        </dependencies>
-    </metadata>
-    <files>
-        <file src="..\src\Positron.UI\bin\Release\Positron.UI.dll" target="lib\net452\Positron.UI.dll" />
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="..\src\Positron.UI\bin\Release\Positron.UI.dll" target="lib\net452\Positron.UI.dll" />
 		<file src="..\src\Positron.UI\bin\Release\Positron.UI.xml" target="lib\net452\Positron.UI.xml" />
-    </files>
+	</files>
 </package>

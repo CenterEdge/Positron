@@ -1,23 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
-    <metadata>
-        <id>Positron.Server.Hosting</id>
-        <version>0.1.5</version>
-        <authors>bburnett</authors>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>
-			In-process MVC 6 web server.  Accepts in-process requests, and responds using views and resources
-			embedded in the assemblies implementing Positron.Server.
+	<metadata>
+		<id>Positron.Server.Hosting</id>
+		<version>0.1.5</version>
+		<authors>btburnett3</authors>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<title>Positron Hosting</title>
+		<description>
+			In-process Asp.Net Core MVC 6 web server. Accepts in-process requests, and responds using views and resources embedded in assemblies implementing Positron.Server.
 		</description>
-        <copyright>Copyright (c) 2016 Pathfinder Software, LLC.  All Rights Reserved.</copyright>
-        <dependencies>
-            <dependency id="Microsoft.AspNetCore.Mvc" version="1.0.1" />
+		<tags>Positron ASP.Net Core MVC Chromium CefSharp</tags>
+		<projectUrl>https://github.com/CenterEdge/Positron</projectUrl>
+		<licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+		<copyright>Copyright (c) 2016 Pathfinder Software, LLC.  All Rights Reserved.</copyright>
+		<dependencies>
+			<dependency id="Microsoft.AspNetCore.Mvc" version="1.0.1" />
 			<dependency id="Microsoft.AspNetCore.Hosting" version="1.0.0" />
-			<dependency id="Positron.Server" version="0.1.4" />
-        </dependencies>
-    </metadata>
-    <files>
-        <file src="..\src\Positron.Server.Hosting\bin\Release\Positron.Server.Hosting.dll" target="lib\net452\Positron.Server.Hosting.dll" />
+			<dependency id="Positron.Server" version="0.1.5" />
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="..\src\Positron.Server.Hosting\bin\Release\Positron.Server.Hosting.dll" target="lib\net452\Positron.Server.Hosting.dll" />
 		<file src="..\src\Positron.Server.Hosting\bin\Release\Positron.Server.Hosting.xml" target="lib\net452\Positron.Server.Hosting.xml" />
-    </files>
+	</files>
 </package>

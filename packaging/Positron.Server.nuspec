@@ -1,23 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
-    <metadata>
-        <id>Positron.Server</id>
-        <version>0.1.5</version>
-        <authors>bburnett</authors>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>
-			Base package for in-process MVC 6 web server.  Should be used by assemblies which are serving controllers and views,
-			but which don't require access to the actual in-process server host.
+	<metadata>
+		<id>Positron.Server</id>
+		<version>0.1.5</version>
+		<authors>btburnett3</authors>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<title>Positron Server</title>
+		<description>
+			Base package for in-process ASP.Net Core MVC 6 web server. Should be used by assemblies which are serving controllers and views, but which don't require access to the actual in-process server host.
 		</description>
-        <copyright>Copyright (c) 2016 Pathfinder Software, LLC.  All Rights Reserved.</copyright>
-        <dependencies>
-            <dependency id="Microsoft.AspNetCore.Mvc" version="1.0.1" />
-        </dependencies>
-    </metadata>
-    <files>
-        <file src="..\src\Positron.Server\Positron.Server.props" target="build\net452\Positron.Server.props" />
-        <file src="..\src\Positron.Server\Positron.Server.targets" target="build\net452\Positron.Server.targets" />
-        <file src="..\src\Positron.Server\bin\Release\Positron.Server.dll" target="lib\net452\Positron.Server.dll" />
+		<tags>Positron ASP.Net Core MVC Chromium CefSharp</tags>
+		<projectUrl>https://github.com/CenterEdge/Positron</projectUrl>
+		<licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+		<copyright>Copyright (c) 2016 Pathfinder Software, LLC.  All Rights Reserved.</copyright>
+		<dependencies>
+			<dependency id="Microsoft.AspNetCore.Mvc" version="1.0.1" />
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="..\src\Positron.Server\Positron.Server.props" target="build\net452\Positron.Server.props" />
+		<file src="..\src\Positron.Server\Positron.Server.targets" target="build\net452\Positron.Server.targets" />
+		<file src="..\src\Positron.Server\bin\Release\Positron.Server.dll" target="lib\net452\Positron.Server.dll" />
 		<file src="..\src\Positron.Server\bin\Release\Positron.Server.xml" target="lib\net452\Positron.Server.xml" />
-    </files>
+	</files>
 </package>
