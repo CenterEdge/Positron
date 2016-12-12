@@ -44,14 +44,6 @@ namespace Positron.UI.Builder
         /// <returns>The <see cref="IPositronUiBuilder"/>.</returns>
         IPositronUiBuilder SetWebHost(IWebHost webHost);
 
-        /// <summary>
-        /// Sets the <see cref="IConsoleLogger"/> used to handle Chromium console messages.
-        /// </summary>
-        /// <param name="consoleLogger"><see cref="IConsoleLogger"/> used to handle Chromium console messages.</param>
-        /// <returns>The <see cref="IPositronUiBuilder"/>.</returns>
-        IPositronUiBuilder UseConsoleLogger(IConsoleLogger consoleLogger);
-
-        /// <summary>
         /// Specify the <see cref="ILoggerFactory"/> to be used by the web host.
         /// </summary>
         /// <param name="loggerFactory">The <see cref="ILoggerFactory"/> to be used.</param>

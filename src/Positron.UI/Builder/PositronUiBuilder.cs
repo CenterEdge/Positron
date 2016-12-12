@@ -17,7 +17,6 @@ namespace Positron.UI.Builder
     public class PositronUiBuilder : IPositronUiBuilder
     {
         private IWebHost _webHost;
-        private IConsoleLogger _consoleLogger;
         private ILoggerFactory _loggerFactory;
         private readonly List<Action<IServiceCollection>> _configureServicesDelegates =
             new List<Action<IServiceCollection>>();
@@ -47,13 +46,6 @@ namespace Positron.UI.Builder
             }
 
             _webHost = webHost;
-            return this;
-        }
-
-        /// <inheritdoc cref="IPositronUiBuilder"/>
-        public IPositronUiBuilder UseConsoleLogger(IConsoleLogger consoleLogger)
-        {
-            _consoleLogger = consoleLogger;
             return this;
         }
 
@@ -154,19 +146,14 @@ namespace Positron.UI.Builder
 
             services.TryAddSingleton(_webHost.Services.GetService<IPositronResourceResolver>());
             services.AddSingleton(_webHost);
-            if (_consoleLogger != null)
-            {
-                services.AddSingleton(_consoleLogger);
-            }
-            else
-            {
-                services.AddSingleton<IConsoleLogger>(new NullConsoleLogger());
-            }
 
             foreach (var configureServices in _configureServicesDelegates)
             {
                 configureServices(services);
             }
+
+            // This will be used only if an IConsoleLogger hasn't already been registered
+            services.TryAddSingleton<IConsoleLogger, NullConsoleLogger>();
 
             return services;
         }
@@ -181,7 +168,5 @@ namespace Positron.UI.Builder
 
             settings.SetOffScreenRenderingBestPerformanceArgs();
         }
-
-
     }
 }

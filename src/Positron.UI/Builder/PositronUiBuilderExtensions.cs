@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Positron.UI.Builder
 {
@@ -11,6 +12,20 @@ namespace Positron.UI.Builder
     /// </summary>
     public static class PositronUiBuilderExtensions
     {
+        /// <summary>
+        /// Sets the <see cref="IConsoleLogger"/> used to handle Chromium console messages.
+        /// </summary>
+        /// <param name="builder">The <see cref="IPositronUiBuilder"/>.</param>
+        /// <param name="consoleLogger"><see cref="IConsoleLogger"/> used to handle Chromium console messages.</param>
+        /// <returns>The <see cref="IPositronUiBuilder"/>.</returns>
+        public static IPositronUiBuilder UseConsoleLogger(this IPositronUiBuilder builder, IConsoleLogger consoleLogger)
+        {
+            return builder.ConfigureServices(services =>
+            {
+                services.AddSingleton(consoleLogger);
+            });
+        }
+
         /// <summary>
         /// Configures the debug port used to support Chromium developer tools.
         /// </summary>
