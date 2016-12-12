@@ -89,6 +89,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Views\Home\FormTest.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />

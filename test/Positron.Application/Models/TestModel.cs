@@ -9,5 +9,6 @@ namespace Positron.Application.Models
     public class TestModel
     {
         public string Value { get; set; }
+        public string Value2 { get; set; }
     }
 }

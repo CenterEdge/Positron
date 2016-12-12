@@ -22,10 +22,23 @@ namespace Positron.Application.Controllers
                 Value = id
             });
         }
-        
+
         public IActionResult TestAjax([FromBody] TestModel model)
         {
             return Json(model);
+        }
+
+        public IActionResult FormTest()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult FormTest(TestModel model)
+        {
+            ViewData["Message"] = $"Value = '{model.Value}', Value2 = '{model.Value2}'";
+
+            return View(model);
         }
     }
 }

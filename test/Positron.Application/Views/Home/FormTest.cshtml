@@ -1,0 +1,26 @@
+﻿@model Positron.Application.Models.TestModel
+
+<h2>Test Form</h2>
+
+@if (ViewData["Message"] != null) {
+    <p>@ViewData["Message"]</p>
+}
+
+@using (Html.BeginForm()) {
+<table>
+    <tr>
+        <td>@Html.LabelFor(m => m.Value)</td>
+        <td>@Html.EditorFor(m => m.Value)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(m => m.Value2)</td>
+        <td>@Html.EditorFor(m => m.Value2)</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><button>Submit</button></td>
+    </tr>
+</table>
+}
+
+<a href="javascript:window.history.back()">Back</a>
