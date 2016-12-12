@@ -1,14 +1,18 @@
 Param(
 	[Version]
 	$Version = $null,
-	
+
 	# Increment the revision number
 	[switch]
 	$Increment,
-	
+
 	# Force the version number change, even if it's less than the current version
 	[switch]
-	$Force
+	$Force,
+
+	# Also update AssemblyInfo files.  We normally don't do this to avoid breaking strong naming references with patches.
+	[switch]
+	$UpdateAssemblyInfo
 )
 
 $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
@@ -55,21 +59,29 @@ if (-not $Force) {
 
 $versionStr = $Version.ToString()
 
-# Update C# assembly info files
+if ($UpdateAssemblyInfo)  {
+	# Update C# assembly info files
 
-$regex = New-Object System.Text.RegularExpressions.RegEx "^(\s*\[assembly:\s*Assembly(?:File)?Version\(`")[\d\.]*?(`"\)\]\s*?)$", ([System.Text.RegularExpressions.RegexOptions]::Multiline -bor [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+	$regex = New-Object System.Text.RegularExpressions.RegEx "^(\s*\[assembly:\s*Assembly(?:File)?Version\(`")[\d\.]*?(`"\)\]\s*?)$", ([System.Text.RegularExpressions.RegexOptions]::Multiline -bor [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
 
-foreach ($file in @(Get-ChildItem $rootPath\src -Filter AssemblyInfo.cs -Recurse)) {
-    $content = [System.String]::Join("`r`n", (Get-Content $file.FullName))    
-    $regex.Replace($content, "`${1}$version`${2}") | Out-File $file.FullName -Encoding UTF8 -Force -Width 10000
+	foreach ($file in @(Get-ChildItem $rootPath\src -Filter AssemblyInfo.cs -Recurse)) {
+		$content = [System.String]::Join("`r`n", (Get-Content $file.FullName))
+		$regex.Replace($content, "`${1}$version`${2}") | Out-File $file.FullName -Encoding UTF8 -Force -Width 10000
+	}
 }
 
 # Update nuspec files
 
+$regexMainVersion = New-Object System.Text.RegularExpressions.RegEx "(<version>)[\.\d]*(</version>)", IgnoreCase
+$regexRefVersion = New-Object System.Text.RegularExpressions.RegEx "(<dependency\s+id=`"Positron\.[\.\w]*`"\s+version=`")[\.\d]*(`"\s+\/>)", IgnoreCase
+
 Get-ChildItem $rootPath\packaging\*.nuspec | % {
-	$regex = New-Object System.Text.RegularExpressions.RegEx "(<version>)[\.\d]*(</version>)", IgnoreCase
-	$filename = $_.FullName
-	$regex.Replace([System.String]::Join("`r`n", (Get-Content $filename)), "`${1}$Version`${2}") | Out-File $filename -Force -Encoding UTF8 -Width 5000
+	$body = [System.String]::Join("`r`n",  (Get-Content $_.FullName))
+
+	$body = $regexMainVersion.Replace($body, "`${1}$Version`${2}")
+	$body = $regexRefVersion.Replace($body, "`${1}$Version`${2}")
+
+	$body | Out-File $_.FullName -Force -Encoding UTF8 -Width 5000
 }
 
 # Write new version to Version.txt
