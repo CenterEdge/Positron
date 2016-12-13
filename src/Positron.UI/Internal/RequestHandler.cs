@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Shell;
 using CefSharp;
 using Microsoft.Extensions.Logging;
 
@@ -7,15 +8,21 @@ namespace Positron.UI.Internal
     internal class RequestHandler : IRequestHandler
     {
         private readonly ILogger<RequestHandler> _logger;
+        private readonly IResourceRequestFilter _requestFilter;
 
-        public RequestHandler(ILogger<RequestHandler> logger)
+        public RequestHandler(ILogger<RequestHandler> logger, IResourceRequestFilter requestFilter)
         {
             if (logger == null)
             {
                 throw new ArgumentNullException(nameof(logger));
             }
+            if (requestFilter == null)
+            {
+                throw new ArgumentNullException(nameof(requestFilter));
+            }
 
             _logger = logger;
+            _requestFilter = requestFilter;
         }
 
         public bool OnBeforeBrowse(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, bool isRedirect)
@@ -43,15 +50,45 @@ namespace Positron.UI.Internal
         public virtual CefReturnValue OnBeforeResourceLoad(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request,
             IRequestCallback callback)
         {
-            if (!request.Url.StartsWith("http://positron/"))
+            var context = new ResourceRequestContext
             {
-                _logger.LogWarning(LoggerEventIds.ExternalResource, "Preventing load of external resource '{0}'", request.Url);
+                Method = request.Method,
+                Referrer = !string.IsNullOrEmpty(request.ReferrerUrl) ? new Uri(request.ReferrerUrl) : null,
+                Url = new Uri(request.Url)
+            };
 
-                callback.Dispose();
-                return CefReturnValue.Cancel;
-            }
+            _requestFilter.CanLoadResourceAsync(context)
+                .ContinueWith(task =>
+                {
+                    using (callback)
+                    {
+                        if (!task.IsCompleted)
+                        {
+                            if (task.Exception != null)
+                            {
+                                foreach (var ex in task.Exception.Flatten().InnerExceptions)
+                                {
+                                    _logger.LogError(LoggerEventIds.ResourceRequestFilterError, ex,
+                                        "Error processing IResourceRequestFilter for url '{0}'", context.Url);
+                                }
+                            }
+                            else
+                            {
+                                _logger.LogError(LoggerEventIds.ResourceRequestFilterError,
+                                    "Error processing IResourceRequestFilter for url '{0}', no exception returned",
+                                    context.Url);
+                            }
 
-            return CefReturnValue.Continue;
+                            callback.Cancel();
+                        }
+                        else
+                        {
+                            callback.Continue(task.Result);
+                        }
+                    }
+                });
+
+            return CefReturnValue.ContinueAsync;
         }
 
         public bool GetAuthCredentials(IWebBrowser browserControl, IBrowser browser, IFrame frame, bool isProxy, string host, int port,

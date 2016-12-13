@@ -28,5 +28,6 @@
 
         // ResourceHandler
         public const int ExternalResource = 500;
+        public const int ResourceRequestFilterError = 501;
     }
 }

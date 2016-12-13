@@ -52,7 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builder\PositronUiBuilderExtensions.cs" />
+    <Compile Include="HostResourceRequestFilter.cs" />
     <Compile Include="Internal\LoggerEventIds.cs" />
+    <Compile Include="Internal\PositronOnlyResourceRequestFilter.cs" />
     <Compile Include="Internal\PositronResourceHandlerFactory.cs" />
     <Compile Include="Internal\PositronResourceHandler.cs" />
     <Compile Include="Internal\BrowserProcessHandler.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="IConsoleLogger.cs" />
     <Compile Include="Internal\NullConsoleLogger.cs" />
     <Compile Include="Internal\KeyboardHandler.cs" />
+    <Compile Include="IResourceRequestFilter.cs" />
     <Compile Include="PositronWindow.xaml.cs">
       <DependentUpon>PositronWindow.xaml</DependentUpon>
     </Compile>
@@ -72,6 +75,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Internal\RequestHandler.cs" />
     <Compile Include="Internal\PositronUi.cs" />
+    <Compile Include="ResourceRequestContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

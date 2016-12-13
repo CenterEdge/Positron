@@ -137,6 +137,7 @@ namespace Positron.UI.Builder
             //This is required to add ILogger of T.
             services.AddLogging();
 
+            services.TryAddSingleton<IResourceRequestFilter, PositronOnlyResourceRequestFilter>();
             services.TryAddSingleton<IBrowserProcessHandler, BrowserProcessHandler>();
             services.TryAddSingleton<IRequestHandler, RequestHandler>();
             services.TryAddSingleton<IResourceHandlerFactory, PositronResourceHandlerFactory>();
