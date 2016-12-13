@@ -1,6 +1,8 @@
 # Positron
 HTML 5 UI system for .Net, using Chromium and ASP.Net MVC 6
 
+[![Build status](https://ci.appveyor.com/api/projects/status/akifm35uejxtawv1/branch/master?svg=true)](https://ci.appveyor.com/project/brantburnett/positron/branch/master)
+
 ## Overview
 
 [Electron](http://electron.atom.io/) is a great tool for writing desktop applications with modern HTML5 user interfaces. But what if
