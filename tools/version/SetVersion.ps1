@@ -84,6 +84,14 @@ Get-ChildItem $rootPath\packaging\*.nuspec | % {
 	$body | Out-File $_.FullName -Force -Encoding UTF8 -Width 5000
 }
 
+# Update appveyor.yml
+
+$regex = New-Object System.Text.RegularExpressions.RegEx "(version:\s+)[\d\.]+(\.{build})", IgnoreCase
+
+$body = [System.String]::Join("`r`n",  (Get-Content $rootPath\appveyor.yml))
+$body = $regex.Replace($body, "`${1}$Version`${2}")
+$body | Out-File $rootPath\appveyor.yml -Force -Encoding UTF8 -Width 5000
+
 # Write new version to Version.txt
 
 $versionStr | Out-File $rootPath\src\Version.txt -Force -Encoding UTF8
