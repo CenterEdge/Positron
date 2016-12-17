@@ -42,7 +42,8 @@ namespace Positron.UI.Internal
                 RequestHandler = Services.GetRequiredService<IRequestHandler>(),
                 LifeSpanHandler = Services.GetRequiredService<ILifeSpanHandler>(),
                 KeyboardHandler = Services.GetRequiredService<IKeyboardHandler>(),
-                ResourceHandlerFactory = Services.GetRequiredService<IResourceHandlerFactory>()
+                ResourceHandlerFactory = Services.GetRequiredService<IResourceHandlerFactory>(),
+                JsDialogHandler = Services.GetRequiredService<IJsDialogHandler>()
             };
 
             if (!_globalScriptObjectsRegistered)

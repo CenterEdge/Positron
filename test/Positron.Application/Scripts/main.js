@@ -1,4 +1,26 @@
 ﻿$(function () {
+    $("#AlertTest").click(function (e) {
+        e.preventDefault();
+
+        window.alert("Alert Test!");
+    });
+
+    $("#ConfirmTest").click(function (e) {
+        e.preventDefault();
+
+        var result = window.confirm("Yes or no?");
+
+        window.alert(result);
+    });
+
+    $("#PromptTest").click(function (e) {
+        e.preventDefault();
+
+        var result = window.prompt("Prompt text:", "Default Value");
+
+        window.alert(result);
+    });
+
     $("#TestId").click(function (e) {
         e.preventDefault();
 

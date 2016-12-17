@@ -4,10 +4,13 @@ using System.Runtime.CompilerServices;
 using CefSharp;
 using CefSharp.Wpf;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Positron.Application;
+using Positron.Application.Handlers;
 using Positron.Server.Hosting;
 using Positron.UI;
 using Positron.UI.Builder;
+using Positron.UI.Dialog;
 
 namespace Positron.WinFormsApplication
 {
@@ -54,7 +57,13 @@ namespace Positron.WinFormsApplication
             app.InitializeComponent();
 
             var uiBuilder = new PositronUiBuilder()
-                .SetWebHost(webHost);
+                .SetWebHost(webHost)
+                .ConfigureServices(services =>
+                {
+                    services
+                        .AddSingleton<IGlobalScriptObject, TestScriptObject>()
+                        .AddSingleton<IPositronDialogHandler, DialogHandler>();
+                }); ;
 
             uiBuilder.UseConsoleLogger(new TestLogger());
 

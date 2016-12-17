@@ -44,6 +44,7 @@ namespace Positron.UI.Builder
         /// <returns>The <see cref="IPositronUiBuilder"/>.</returns>
         IPositronUiBuilder SetWebHost(IWebHost webHost);
 
+        /// <summary>
         /// Specify the <see cref="ILoggerFactory"/> to be used by the web host.
         /// </summary>
         /// <param name="loggerFactory">The <see cref="ILoggerFactory"/> to be used.</param>

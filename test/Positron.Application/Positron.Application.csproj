@@ -57,6 +57,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handlers\DialogHandler.cs" />
     <Compile Include="Models\TestModel.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="TestScriptObject.cs" />

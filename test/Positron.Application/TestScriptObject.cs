@@ -2,7 +2,7 @@
 
 namespace Positron.Application
 {
-    class TestScriptObject : IGlobalScriptObject
+    public class TestScriptObject : IGlobalScriptObject
     {
         public string Name => "test";
 
