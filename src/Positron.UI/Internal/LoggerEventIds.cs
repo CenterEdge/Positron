@@ -29,5 +29,9 @@
         // ResourceHandler
         public const int ExternalResource = 500;
         public const int ResourceRequestFilterError = 501;
+
+        // DialogHandler
+        public const int DialogHandlerError = 600;
+        public const int UnknownDialogType = 601;
     }
 }

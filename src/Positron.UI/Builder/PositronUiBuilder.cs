@@ -143,6 +143,7 @@ namespace Positron.UI.Builder
             services.TryAddSingleton<IResourceHandlerFactory, PositronResourceHandlerFactory>();
             services.TryAddSingleton<IPositronUi, PositronUi>();
             services.TryAddSingleton<ILifeSpanHandler, LifeSpanHandler>();
+            services.TryAddSingleton<IJsDialogHandler, PositronJsDialogHandler>();
             services.TryAddSingleton<IKeyboardHandler, KeyboardHandler>();
 
             services.TryAddSingleton(_webHost.Services.GetService<IPositronResourceResolver>());

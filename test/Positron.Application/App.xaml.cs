@@ -7,9 +7,11 @@ using CefSharp;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Positron.Application.Handlers;
 using Positron.Server.Hosting;
 using Positron.UI;
 using Positron.UI.Builder;
+using Positron.UI.Dialog;
 
 namespace Positron.Application
 {
@@ -60,7 +62,9 @@ namespace Positron.Application
                 .UseDebugPort(8080)
                 .ConfigureServices(services =>
                 {
-                    services.AddSingleton<IGlobalScriptObject, TestScriptObject>();
+                    services
+                        .AddSingleton<IGlobalScriptObject, TestScriptObject>()
+                        .AddSingleton<IPositronDialogHandler, DialogHandler>();
                 });
 
             var windowHandler = uiBuilder.Build();
