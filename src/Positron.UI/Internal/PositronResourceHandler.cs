@@ -138,14 +138,17 @@ namespace Positron.UI.Internal
             response.StatusText = _response.ReasonPhrase;
             response.MimeType = mimeType;
 
-            response.ResponseHeaders = new NameValueCollection();
+            var headers = new NameValueCollection();
+
             foreach (var header in _response.Headers)
             {
-                response.ResponseHeaders[header.Key] = header.Value.FirstOrDefault();
+                headers[header.Key] = header.Value;
             }
 
-            if ((response.StatusCode == (int) HttpStatusCode.Redirect) ||
-                (response.StatusCode == (int) HttpStatusCode.TemporaryRedirect))
+            response.ResponseHeaders = headers;
+
+            if ((response.StatusCode == (int)HttpStatusCode.Redirect) ||
+                (response.StatusCode == (int)HttpStatusCode.TemporaryRedirect))
             {
                 var redirectLocation = _response.Headers["Location"].FirstOrDefault();
                 if (redirectLocation != null)
