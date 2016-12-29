@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
 	<metadata>
 		<id>Positron.Server.Hosting</id>
-		<version>0.2.0</version>
+		<version>0.2.1</version>
 		<authors>btburnett3</authors>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<title>Positron Hosting</title>
@@ -16,7 +16,7 @@
 		<dependencies>
 			<dependency id="Microsoft.AspNetCore.Mvc" version="1.0.1" />
 			<dependency id="Microsoft.AspNetCore.Hosting" version="1.0.0" />
-			<dependency id="Positron.Server" version="0.2.0" />
+			<dependency id="Positron.Server" version="0.2.1" />
 		</dependencies>
 	</metadata>
 	<files>
