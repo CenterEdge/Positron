@@ -2,6 +2,8 @@
 {
     internal static class LoggerEventIds
     {
+        public const int UnhandledError = 0;
+
         // PositronResourceHandler
         public const int RequestStarting = 1;
         public const int RequestFinished = 2;
