@@ -26,33 +26,44 @@ namespace Positron.UI.Internal
 
         public bool OnKeyEvent(IWebBrowser browserControl, IBrowser browser, KeyType type, int windowsKeyCode, int nativeKeyCode, CefEventFlags modifiers, bool isSystemKey)
         {
-            var isHandled = false;
-
-            switch (type)
+            try
             {
-                case KeyType.RawKeyDown:
-                    if (windowsKeyCode == F12Code && Settings.RemoteDebuggingPort != default(int))
-                    {
-                        _logger.LogInformation(LoggerEventIds.OpenDebugTools, "F12: Opening debug tools");
+                var isHandled = false;
 
-                        Process.Start("chrome.exe", "http://localhost:" + Settings.RemoteDebuggingPort);
-                        isHandled = true;
-                    }
-                    break;
-                case KeyType.KeyUp:
-                    break;
-                case KeyType.Char:
-                    if (windowsKeyCode == ControlRCode)
-                    {
-                        _logger.LogInformation(LoggerEventIds.Refresh, "Ctrl-R: Triggering reload of '{0}'", browserControl.Address);
+                switch (type)
+                {
+                    case KeyType.RawKeyDown:
+                        if (windowsKeyCode == F12Code && Settings.RemoteDebuggingPort != default(int))
+                        {
+                            _logger.LogInformation(LoggerEventIds.OpenDebugTools, "F12: Opening debug tools");
 
-                        browserControl.Reload();
-                        isHandled = true;
-                    }
-                    break;
+                            Process.Start("chrome.exe", "http://localhost:" + Settings.RemoteDebuggingPort);
+                            isHandled = true;
+                        }
+                        break;
+                    case KeyType.KeyUp:
+                        break;
+                    case KeyType.Char:
+                        if (windowsKeyCode == ControlRCode)
+                        {
+                            _logger.LogInformation(LoggerEventIds.Refresh, "Ctrl-R: Triggering reload of '{0}'",
+                                browser.MainFrame?.Url ?? "unknown");
+
+                            browserControl.Reload();
+                            isHandled = true;
+                        }
+                        break;
+                }
+
+                return isHandled;
             }
+            catch (Exception ex)
+            {
+                // Unhandled exceptions may cause app crash, so trap and log
+                _logger.LogError(LoggerEventIds.UnhandledError, ex, Resources.LogMessage_Unhandled_Error);
 
-            return isHandled;
+                return false;
+            }
         }
 
         public bool OnPreKeyEvent(IWebBrowser browserControl, IBrowser browser, KeyType type, int windowsKeyCode, int nativeKeyCode, CefEventFlags modifiers, bool isSystemKey, ref bool isKeyboardShortcut)
